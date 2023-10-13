@@ -23,12 +23,22 @@ function createDataObject(element) {
     return data;
 }
 
+function clearForm(element) {
+    const form = Object.entries(element.target);
+    let i = 0;
+    form.forEach(item => {
+        if (item[1].value) {
+            element.target[item[0]].value = '';
+        }
+    })
+}
+
 async function sendFormData(url, element, callback) {
     const data = createDataObject(element);
 
     await axios.post(url, data, {headers: "application/json"})
-        .then(response => {callback(response, null);})
-        .catch(err => {callback(err, null);});
+        .then(response => {callback(response, null); clearForm(element);})
+        .catch(err => {callback(null, err);});
 }
 
 
@@ -38,16 +48,17 @@ export default function SendableForm({href, children}) {
     const [isLoading, setIsLoading] = useState();
     const [infoBox, setInfoBox] = useState({});
 
-    function handleSendResult(response, error) {
+    async function handleSendResult(response, error) {
         if (response) {
-            const data = response.data;
-            if (response.status == 200) {
+            if (response.status === 200) {
+                const data = response.data;
                 setIsFailed(false);
                 setInfoBox({title: data.messageTitle, body: data.message});
             }
             else {
+                const data = response.data;
                 setIsFailed(true);
-                setInfoBox({title: "Form sending failed", body: response.message});
+                setInfoBox({title: response.response.data.messageTitle, body: response.response.data.message});
             }
         }
         else {

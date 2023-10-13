@@ -49,6 +49,10 @@ export default function SendableForm({href, children}) {
     const [infoBox, setInfoBox] = useState({});
 
     async function handleSendResult(response, error) {
+        error ? // This cursed abomination assigns error.response to response if there is no response, but error.response
+        error.response ? response = error.response : response = null 
+        : error = null;
+
         if (response) {
             if (response.status === 200) {
                 const data = response.data;
@@ -58,7 +62,7 @@ export default function SendableForm({href, children}) {
             else {
                 const data = response.data;
                 setIsFailed(true);
-                setInfoBox({title: response.response.data.messageTitle, body: response.response.data.message});
+                setInfoBox({title: data.messageTitle, body: data.message});
             }
         }
         else {

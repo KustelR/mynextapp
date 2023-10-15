@@ -58,7 +58,7 @@ export default function RegisterForm() {
 
   return (
     <SendableForm 
-      href="/api/v1/register"
+      href="/auth/v1/register"
       submitHandler={sendFormData}>
         <div className='md:columns-2 mb-2'>
           <CustomInput

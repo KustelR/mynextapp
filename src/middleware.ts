@@ -8,5 +8,5 @@ export function middleware(request: NextRequest) {
  
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: '/api/v1/:path*',
+  matcher: ['/api/v1/:path*', '/auth/v1/:path*'],
 }

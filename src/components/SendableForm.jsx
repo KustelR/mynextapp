@@ -18,15 +18,15 @@ export default function SendableForm({href, children, submitHandler}) {
         error ? // This cursed abomination assigns error.response to response if there is no response, but error.response
         error.response ? response = error.response : response = null 
         : error = null;
-
+        let data;
         if (response) {
-            if (response.status === 200) {
-                const data = response.data;
+            if (response.status.toString().startsWith("2")) {
+                data = response.data;
                 setIsFailed(false);
                 setInfoBox({title: data.messageTitle, body: data.message});
             }
             else {
-                const data = response.data;
+                data = response.data;
                 setIsFailed(true);
                 setInfoBox({title: data.messageTitle, body: data.message});
             }
@@ -35,6 +35,16 @@ export default function SendableForm({href, children, submitHandler}) {
             setIsFailed(true);
             setInfoBox({title: "Form sending failed", body: error.message});
         }
+
+        if (data) {
+            if (data.toLocalStorage) {
+                const keys = Object.keys(data.toLocalStorage);
+                for (let i=0; i < keys.length; i++) {
+                    localStorage.setItem(keys[i], data.toLocalStorage[keys[i]]);
+                }
+            }
+        }
+        
         setIsLoading(false);
     }
 

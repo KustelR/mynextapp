@@ -1,7 +1,7 @@
 "use client";
 
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -9,10 +9,12 @@ import ImageButton from '../ui/ImageButton';
 import TextButton from '../ui/TextButton';
 import CustomInput from '../ui/CustomInput';
 const classNames = require('classnames');
+import ShowIf from '../ui/ShowIf'
 
 
 export default function Navbar() {
   const [visbility, setVisibility] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   function toggleVisibility() {
@@ -38,6 +40,12 @@ export default function Navbar() {
     'md:rounded-md',
   )
   
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) setIsLoggedIn(true);
+  })
+
   function toggleTheme() {
     isDarkTheme ? document.body.classList.remove('dark') : document.body.classList.add('dark');
     setIsDarkTheme(!isDarkTheme)
@@ -64,15 +72,33 @@ export default function Navbar() {
           </div>
           <ul className={navbarClasses}>
           <li className={navbarItemClasses + ' block md:hidden'}><CustomInput placeholder="Search..." /></li>
+          <li className={navbarItemClasses + ' block md:hidden'}><Link href="/profile">Profile</Link></li>
             <li className={navbarItemClasses}><Link href="/">Home</Link></li>
             <li className={navbarItemClasses}>About</li>
-            <li className={navbarItemClasses}><Link href="/Main">Articles</Link></li>
+            <li className={navbarItemClasses}><Link href="/articles">Articles</Link></li>
             <li className={navbarItemClasses}>Contact</li>
-            <li className={navbarItemClasses + ' block md:hidden'}><Link href="/Login">Log in / Register</Link></li>
+            <li className={navbarItemClasses + ' block md:hidden'}><Link href="/login">Log in / Register</Link></li>
+            <li className={navbarItemClasses + ' block md:hidden'} onClick={() => {localStorage.clear(); window.location.reload()}}>Log out</li>
         </ul>
       </div>
       <div className='flex md:items-center'>
-        <div className='mr-12 hidden lg:block'><Link href="/Login"><TextButton >Log in / Register</TextButton></Link></div>
+        <ShowIf
+        isVisible={isLoggedIn}
+        className="hidden md:flex">
+          <div className='text-xl font-bold md:text-base md:font-normal py-2 px-4 h-full md:h-fit flex items-center'>
+            <Link href="/profile">Profile</Link>
+          </div>
+          <div className='md:mr-8'>
+            <TextButton onClick={() => {localStorage.clear(); window.location.reload()}}>Log out</TextButton>
+          </div>
+        </ShowIf>
+        <ShowIf isVisible={!isLoggedIn}>
+          <div className='mr-12 hidden lg:block'>
+            <Link href="/login">
+              <TextButton >Log in / Register</TextButton>
+            </Link>
+          </div>
+        </ShowIf>
         <div className='hidden md:block mr-12'><CustomInput  placeholder="Search..." /></div>
         <ImageButton onClick={toggleTheme} className="h-9 w-9 relative items-center">{getThemeImage()}</ImageButton>
       </div>

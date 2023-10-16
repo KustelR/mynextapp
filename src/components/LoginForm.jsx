@@ -2,6 +2,7 @@ import React from 'react'
 import CustomInput from './ui/CustomInput'
 import TextButton from './ui/TextButton'
 import SendableForm from './SendableForm';
+import { sendFormData } from '@/scripts/registration';
 
 
 function onFail(error) {
@@ -11,7 +12,9 @@ function onFail(error) {
 
 export default function LoginForm() {
   return (
-    <SendableForm href="/api/v1/login">
+    <SendableForm 
+      href="/auth/v1/login"
+      submitHandler={sendFormData}>
         <CustomInput className="mb-2" id="login" label="Login" autoComplete="username"/>
         <CustomInput 
             className="mb-2" 

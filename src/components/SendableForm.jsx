@@ -1,7 +1,6 @@
 'use client'
 
 import React, {useState} from 'react';
-import axios from 'axios';
 
 import ShowIf from './ui/ShowIf';
 import SuccessBox from './ui/popups/SuccessBox';
@@ -9,40 +8,7 @@ import ErrorBox from './ui/popups/ErrorBox';
 import PendingBox from './ui/popups/PendingBox';
 
 
-function createDataObject(element) {
-    let data = {};
-    const form = Object.entries(element.target);
-    form.forEach(item => {
-        const tagName = item[1].tagName;
-        const id = item[1].id;
-        const value = item[1].value;
-        if (tagName && id && value) {
-            data[id] = value;
-        }
-    });
-    return data;
-}
-
-function clearForm(element) {
-    const form = Object.entries(element.target);
-    let i = 0;
-    form.forEach(item => {
-        if (item[1].value) {
-            element.target[item[0]].value = '';
-        }
-    })
-}
-
-async function sendFormData(url, element, callback) {
-    const data = createDataObject(element);
-
-    await axios.post(url, data, {headers: "application/json"})
-        .then(response => {callback(response, null); clearForm(element);})
-        .catch(err => {callback(null, err);});
-}
-
-
-export default function SendableForm({href, children}) {
+export default function SendableForm({href, children, submitHandler}) {
 
     const [isFailed, setIsFailed] = useState();
     const [isLoading, setIsLoading] = useState();
@@ -52,15 +18,15 @@ export default function SendableForm({href, children}) {
         error ? // This cursed abomination assigns error.response to response if there is no response, but error.response
         error.response ? response = error.response : response = null 
         : error = null;
-
+        let data;
         if (response) {
-            if (response.status === 200) {
-                const data = response.data;
+            if (response.status.toString().startsWith("2")) {
+                data = response.data;
                 setIsFailed(false);
                 setInfoBox({title: data.messageTitle, body: data.message});
             }
             else {
-                const data = response.data;
+                data = response.data;
                 setIsFailed(true);
                 setInfoBox({title: data.messageTitle, body: data.message});
             }
@@ -69,11 +35,21 @@ export default function SendableForm({href, children}) {
             setIsFailed(true);
             setInfoBox({title: "Form sending failed", body: error.message});
         }
+
+        if (data) {
+            if (data.toLocalStorage) {
+                const keys = Object.keys(data.toLocalStorage);
+                for (let i=0; i < keys.length; i++) {
+                    localStorage.setItem(keys[i], data.toLocalStorage[keys[i]]);
+                }
+            }
+        }
+        
         setIsLoading(false);
     }
 
   return (
-    <form onSubmit={e => {e.preventDefault(); sendFormData(href, e, handleSendResult); setIsLoading(true); setIsFailed(undefined)}}>
+    <form onSubmit={e => {e.preventDefault(); submitHandler(href, e, handleSendResult); setIsLoading(true); setIsFailed(undefined)}}>
         <ShowIf 
             isVisible={!isFailed && (isFailed !== undefined)}>
             <SuccessBox title={infoBox.title} body={infoBox.body} />

@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react'
+import {sendFormData} from '../scripts/registration';
 
 import CustomInput from './ui/CustomInput'
 import CustomButton from './ui/TextButton'
@@ -6,11 +7,6 @@ import ShowIf from './ui/ShowIf'
 import SendableForm from './SendableForm'
 
 import { validateLogin, validateEmail, validatePassword } from '@/scripts/validations'
-
-
-function sendFormData(element) {
-  console.log(element.target[0].value);
-}
 
 
 export default function RegisterForm() {
@@ -61,7 +57,9 @@ export default function RegisterForm() {
   }, [isLoginValid, isEmailValid, isPasswordValid, isPasswordConfirmed, isUsernameValid])
 
   return (
-    <SendableForm href="/api/v1/register">
+    <SendableForm 
+      href="/auth/v1/register"
+      submitHandler={sendFormData}>
         <div className='md:columns-2 mb-2'>
           <CustomInput
             className="mb-2" 

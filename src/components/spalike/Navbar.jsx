@@ -75,9 +75,10 @@ export default function Navbar() {
           <li className={navbarItemClasses + ' block md:hidden'}><Link href="/profile">Profile</Link></li>
             <li className={navbarItemClasses}><Link href="/">Home</Link></li>
             <li className={navbarItemClasses}>About</li>
-            <li className={navbarItemClasses}><Link href="/articles">Articles</Link></li>
+            <li className={navbarItemClasses}><Link href="/articles">Read</Link></li>
+            <li className={navbarItemClasses}><Link href="/write">Write</Link></li>
             <li className={navbarItemClasses}>Contact</li>
-            <li className={navbarItemClasses + ' block md:hidden'}><Link href="/login">Log in / Register</Link></li>
+            <li className={navbarItemClasses + ' block md:hidden'}><Link href="/login">Log in / Sign up</Link></li>
             <li className={navbarItemClasses + ' block md:hidden'} onClick={() => {localStorage.clear(); window.location.reload()}}>Log out</li>
         </ul>
       </div>

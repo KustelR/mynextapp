@@ -7,7 +7,7 @@ const buttonClasses = classNames(
   'bg-black',
   'text-white',
   'dark:rounded-2xl',
-  'hover:bg-neutral',
+  'hover:bg-neutral-500',
   'dark:bg-white',
   'dark:text-black',
   'drop-shadow-lg',
@@ -15,7 +15,10 @@ const buttonClasses = classNames(
   'active:drop-shadow-sm',
   'disabled:opacity-70',
   'disabled:hover:bg-black',
-  'dark:disabled:hover:bg-white'
+  'disabled:drop-shadow-none',
+  'dark:disabled:hover:bg-white',
+  'transition-colors',
+  'transition-100'
 )
 
 

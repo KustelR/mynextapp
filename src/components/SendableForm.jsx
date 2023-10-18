@@ -14,6 +14,18 @@ export default function SendableForm({href, children, submitHandler}) {
     const [isLoading, setIsLoading] = useState();
     const [infoBox, setInfoBox] = useState({});
 
+    async function submit(e) {
+        e.preventDefault();
+        if (submitHandler) {
+            submitHandler(href, e, handleSendResult);
+            setIsLoading(true); 
+            setIsFailed(undefined);
+        }
+        else {
+            console.error('No submit handler provided to the form')
+        }
+    }
+
     async function handleSendResult(response, error) {
         error ? // This cursed abomination assigns error.response to response if there is no response, but error.response
         error.response ? response = error.response : response = null 
@@ -49,7 +61,7 @@ export default function SendableForm({href, children, submitHandler}) {
     }
 
   return (
-    <form onSubmit={e => {e.preventDefault(); submitHandler(href, e, handleSendResult); setIsLoading(true); setIsFailed(undefined)}}>
+    <form onSubmit={submit}>
         <ShowIf 
             isVisible={!isFailed && (isFailed !== undefined)}>
             <SuccessBox title={infoBox.title} body={infoBox.body} />

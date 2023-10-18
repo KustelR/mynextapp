@@ -11,7 +11,7 @@ import RegisterForm from '@/components/RegisterForm';
 import ShowIf from '@/components/ui/ShowIf';
 
 
-export default function LoginView() {
+export default function Login() {
 
     const [isNewUser, setIsNewUser] = useState(false);
 
@@ -28,7 +28,7 @@ export default function LoginView() {
                 <LoginForm></LoginForm>
             </ShowIf>
             <ShowIf isVisible={isNewUser}>
-                <h2 className='font-bold'>Register page</h2>
+                <h2 className='font-bold'>Sign up page</h2>
                 <RegisterForm></RegisterForm>
             </ShowIf>
             </div>

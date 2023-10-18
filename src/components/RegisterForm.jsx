@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react'
-import {sendFormData} from '../scripts/registration';
+import {sendFormData} from '../scripts/forms/sendAuthForm';
 
 import CustomInput from './ui/CustomInput'
 import CustomButton from './ui/TextButton'

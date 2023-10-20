@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function FooterComponent() {
   return (
-    <div className='text-opacity-10'>
+    <div className='dark:bg-neutral-950'>
         <div className='md:flex'>
           <div className='w-11/12 mb-2 m-2 mx-auto p-1 md:m-8 md:p-4 hover:bg-neutral-300 dark:hover:bg-neutral-800 md:w-1/3'>
         <h3 className='font-bold'>Used technologies</h3>

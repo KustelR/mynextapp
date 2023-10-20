@@ -1,8 +1,8 @@
 import React from 'react'
-import CustomInput from './ui/CustomInput'
+import CustomInput from './ui/inputs/CustomInput'
 import TextButton from './ui/TextButton'
 import SendableForm from './SendableForm';
-import { sendFormData } from '@/scripts/registration';
+import { sendFormData } from '@/scripts/forms/sendAuthForm';
 
 
 function onFail(error) {

@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tailwindcss/typography": "^0.5.10",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.5.1",
     "classnames": "^2.3.2",
+    "clsx": "^2.0.0",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.3.1",
+    "fortawesome": "^0.0.1-security",
+    "lexical": "^0.12.2",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
@@ -22,6 +25,11 @@
     "sharp": "^0.32.6"
   },
   "devDependencies": {
+    "@lexical/list": "^0.12.2",
+    "@lexical/react": "^0.12.2",
+    "@lexical/rich-text": "^0.12.2",
+    "@lexical/selection": "^0.12.2",
+    "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",

@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 import ImageButton from '../ui/ImageButton';
 import TextButton from '../ui/TextButton';
-import CustomInput from '../ui/CustomInput';
+import CustomInput from '../ui/inputs/CustomInput';
 const classNames = require('classnames');
 import ShowIf from '../ui/ShowIf'
 
@@ -44,7 +44,7 @@ export default function Navbar() {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) setIsLoggedIn(true);
-  })
+  }, [])
 
   function toggleTheme() {
     isDarkTheme ? document.body.classList.remove('dark') : document.body.classList.add('dark');
@@ -75,9 +75,10 @@ export default function Navbar() {
           <li className={navbarItemClasses + ' block md:hidden'}><Link href="/profile">Profile</Link></li>
             <li className={navbarItemClasses}><Link href="/">Home</Link></li>
             <li className={navbarItemClasses}>About</li>
-            <li className={navbarItemClasses}><Link href="/articles">Articles</Link></li>
+            <li className={navbarItemClasses}><Link href="/articles">Read</Link></li>
+            <li className={navbarItemClasses}><Link href="/write">Write</Link></li>
             <li className={navbarItemClasses}>Contact</li>
-            <li className={navbarItemClasses + ' block md:hidden'}><Link href="/login">Log in / Register</Link></li>
+            <li className={navbarItemClasses + ' block md:hidden'}><Link href="/login">Log in / Sign up</Link></li>
             <li className={navbarItemClasses + ' block md:hidden'} onClick={() => {localStorage.clear(); window.location.reload()}}>Log out</li>
         </ul>
       </div>

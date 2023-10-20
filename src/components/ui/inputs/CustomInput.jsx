@@ -1,10 +1,10 @@
 'use client'
 
 
-import React from 'react'
+import React, {useState} from 'react'
 import classNames from 'classnames'
-
-import ShowIf from './ShowIf';
+import styles from '@/styles/CustomInput.module.css';
+import ShowIf from '@/components/ui/ShowIf';
 
 export default function CustomInput({id, label, type, advice, placeholder, validation, validationMessage, 
                                      onChange, reference, className, autoComplete}) {
@@ -12,26 +12,35 @@ export default function CustomInput({id, label, type, advice, placeholder, valid
     validation = true;
   }
 
+  const [isFocused, setIsFocused] = useState(false);
+
+  function toggleFocus() {
+    setIsFocused(!isFocused);
+  }
+
   const inputClasses = classNames(
     'block',
     'w-full',
     'p-1',
     'pb-0',
-    'rounded-sm',
     'bg-gray-100',
-    'dark:bg-neutral-700',
-  
-    'focus:outline-0',
-    'border-2',
+    'dark:bg-neutral-800',
+    'outline-0',
     {
-      'border-transparent': validation,
-      'border-b-neutral-300': validation,
-      'focus:border-b-neutral-400': validation,
-      'dark:border-b-neutral-600': validation,
-      'dark:focus:border-b-neutral-500': validation,
-      'border-red-300': !validation,
-      'dark:border-red-500': !validation
+      'outline-1': !validation,
+      'outline-red-500': !validation,
     },
+  )
+
+  const underDiv = classNames(
+    'h-0.5',
+    'transition-all',
+    'transition-1000',
+    'ease-out',
+    styles.animated,
+    {
+      [styles.animatedActive]: isFocused
+    }
   )
 
   return (
@@ -47,8 +56,11 @@ export default function CustomInput({id, label, type, advice, placeholder, valid
           placeholder={placeholder} 
           onChange={onChange}
           ref={reference}
-          autoComplete={autoComplete} 
+          autoComplete={autoComplete}
+          onFocus={toggleFocus}
+          onBlur={toggleFocus}
           />
+          <div className={underDiv}></div>
         <p className='pl-8 w-fit text-xs text-neutral-500 dark:text-neutral-400'>{advice}</p>
     </div>
   )

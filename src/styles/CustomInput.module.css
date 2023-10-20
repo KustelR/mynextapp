@@ -1,0 +1,7 @@
+.animated {
+    background: linear-gradient(to left, #e0e0e0 50%, #a8a8a8 50%) right;
+    background-size: 200%;
+}
+.animatedActive {
+    background-position: left;
+}

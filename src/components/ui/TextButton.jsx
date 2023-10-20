@@ -22,11 +22,12 @@ const buttonClasses = classNames(
 )
 
 
-export default function CustomButton({children, onClick, disabled}) {
+export default function CustomButton({children, onClick, disabled, type}) {
   return (
     <button className={buttonClasses}
             onClick={onClick}
-            disabled={disabled}>
+            disabled={disabled}
+            type={type}>
             {children}
             </button>
   )

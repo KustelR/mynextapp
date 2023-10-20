@@ -33,7 +33,7 @@ async function handleFetchUser() {
       const refreshToken = localStorage.getItem('refreshToken');
       let refreshMessage;
       if (response.data.message === 'jwt expired') {
-        refreshMessage = await fetchFromApi('/api/v1/users/get_access_token', {refresh_token: refreshToken});
+        refreshMessage = await fetchFromApi('/auth/v1/get_access_token', {refresh_token: refreshToken});
       }
       
       if (refreshMessage && refreshMessage.data) {
@@ -70,7 +70,7 @@ export default function Personal() {
 
   return (
     <PageComponent>
-      <div className='bg-white dark:bg-neutral-700 min-h-screen md:w-10/12 lg:w-8/12 mx-auto shadow-2xl p-3'>
+      <div className='bg-white dark:bg-neutral-800 min-h-screen md:w-10/12 lg:w-8/12 mx-auto shadow-2xl p-3'>
         <h1 className='text-2xl font-bold'>Personal profile of {userdata.login}</h1>
         <div>
           <p>Your nickname: {userdata.nickname}</p>

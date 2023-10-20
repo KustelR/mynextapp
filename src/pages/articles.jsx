@@ -7,7 +7,7 @@ import PageComponent from '@/components/spalike/PageComponent'
 export default function Home() {
     return (
       <PageComponent>
-        <ArticleContainer/>
+        <ArticleContainer className="bg-white dark:bg-neutral-900"/>
       </PageComponent>
     )
   }

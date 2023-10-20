@@ -3,8 +3,8 @@
 
 import React, {useState} from 'react'
 import classNames from 'classnames'
-import styles from '../../styles/CustomInput.module.css';
-import ShowIf from './ShowIf';
+import styles from '@/styles/CustomInput.module.css';
+import ShowIf from '@/components/ui/ShowIf';
 
 export default function CustomInput({id, label, type, advice, placeholder, validation, validationMessage, 
                                      onChange, reference, className, autoComplete}) {
@@ -24,7 +24,7 @@ export default function CustomInput({id, label, type, advice, placeholder, valid
     'p-1',
     'pb-0',
     'bg-gray-100',
-    'dark:bg-neutral-700',
+    'dark:bg-neutral-800',
     'outline-0',
     {
       'outline-1': !validation,

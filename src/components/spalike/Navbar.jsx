@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 import ImageButton from '../ui/ImageButton';
 import TextButton from '../ui/TextButton';
-import CustomInput from '../ui/CustomInput';
+import CustomInput from '../ui/inputs/CustomInput';
 const classNames = require('classnames');
 import ShowIf from '../ui/ShowIf'
 
@@ -44,7 +44,7 @@ export default function Navbar() {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) setIsLoggedIn(true);
-  })
+  }, [])
 
   function toggleTheme() {
     isDarkTheme ? document.body.classList.remove('dark') : document.body.classList.add('dark');

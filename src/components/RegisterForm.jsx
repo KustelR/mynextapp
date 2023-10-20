@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react'
 import {sendFormData} from '../scripts/forms/sendAuthForm';
 
-import CustomInput from './ui/CustomInput'
+import CustomInput from './ui/inputs/CustomInput'
 import CustomButton from './ui/TextButton'
 import ShowIf from './ui/ShowIf'
 import SendableForm from './SendableForm'

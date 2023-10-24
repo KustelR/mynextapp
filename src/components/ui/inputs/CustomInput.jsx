@@ -6,6 +6,22 @@ import classNames from 'classnames'
 import styles from '@/styles/CustomInput.module.css';
 import ShowIf from '@/components/ui/ShowIf';
 
+
+/**
+ * Customizable input
+ * @param {object} param0 react component props
+ * @param {string} id HTML id
+ * @param {string} label Label for the input
+ * @param {string} type HTML input type
+ * @param {string} placeholder HTML input placeholder
+ * @param {function} validation Function that validates the input
+ * @param {string} validationMessage Message to display when input is invalid
+ * @param {function} onChange Function to be called on input change
+ * @param {*} reference Refs to be set on input element
+ * @param {string} className Classes (will be applied to root div of the component)
+ * @param {string} autoComplete Autocomplete property
+ * @returns 
+ */
 export default function CustomInput({id, label, type, advice, placeholder, validation, validationMessage, 
                                      onChange, reference, className, autoComplete}) {
   if (validation === undefined) {

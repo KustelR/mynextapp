@@ -5,17 +5,20 @@ import React, {useState, useEffect} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+
 import ImageButton from '../ui/ImageButton';
 import TextButton from '../ui/TextButton';
 import CustomInput from '../ui/inputs/CustomInput';
 const classNames = require('classnames');
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import ShowIf from '../ui/ShowIf'
 
 
 export default function Navbar() {
   const [visbility, setVisibility] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [themeIconSrc, setThemeIconSrc] = useState("");
 
   function toggleVisibility() {
     setVisibility(!visbility);
@@ -42,41 +45,59 @@ export default function Navbar() {
   
 
   useEffect(() => {
+    let isDarkTheme = false;
+    localStorage.getItem("theme") === "dark" ? 
+      isDarkTheme = true : 
+      isDarkTheme = false;
+    if (isDarkTheme) {
+      document.body.classList.add('dark');
+      setThemeIconSrc("/../../assets/theme/icons8-sun-50.png");
+    }
+    else {
+      document.body.classList.remove('dark');
+      setThemeIconSrc("/../../assets/theme/icons8-moon-50.png");
+    }
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) setIsLoggedIn(true);
   }, [])
 
   function toggleTheme() {
-    isDarkTheme ? document.body.classList.remove('dark') : document.body.classList.add('dark');
-    setIsDarkTheme(!isDarkTheme)
-  }
-
-  function getThemeImage() {
+    let isDarkTheme = false;
+    localStorage.getItem("theme") === "dark" ? 
+      isDarkTheme = true : 
+      isDarkTheme = false;
     if (isDarkTheme) {
-      return (<Image fill={true} alt='Theme change' src="/../../assets/theme/icons8-sun-50.png" />)
+      document.body.classList.remove('dark');
+      localStorage.setItem("theme", "light");
+      setThemeIconSrc("/../../assets/theme/icons8-moon-50.png");
     }
     else {
-      return (<Image fill={true} alt='Theme change' src="/../../assets/theme/icons8-moon-50.png" />)
+      document.body.classList.add('dark');
+      localStorage.setItem("theme", "dark");
+      setThemeIconSrc("/../../assets/theme/icons8-sun-50.png");
     }
   }
+
 
   return (
     <div className='flex w-full place-content-between shadow-inner border-bottom border-neutral-200 border-b-2 dark:border-transparent dark:bg-neutral-700 p-1 md:items-center'>
       <div className='flex w-full justify-between'>
         <div className='md:flex justify-between md:justify-normal items-center'>
           <div className='flex'>
-            <button onClick={toggleVisibility} className='mr-4 border-2 border-neutral-500 hover:border-neutral-800 p-1 h-fit md:mr-0 md:invisible md:w-0'>
-                |||
+            <button onClick={toggleVisibility} className='mr-4 p-1 h-fit md:mr-0 md:invisible md:w-0'>
+              <FontAwesomeIcon className='fa-2x' icon={faBars} />
             </button>
-            <h1 className=' md:hover:rotate-1 md:hover:scale-105 text-2xl'><Link href="/">KUST</Link></h1>
+            <div className='flex items-center justify-center'>
+              <h1 className=' md:hover:rotate-1 md:hover:scale-105 text-2xl'><Link href="/">KUST</Link></h1>
+            </div>
           </div>
           <ul className={navbarClasses}>
           <li className={navbarItemClasses + ' block md:hidden'}><CustomInput placeholder="Search..." /></li>
           <li className={navbarItemClasses + ' block md:hidden'}><Link href="/profile">Profile</Link></li>
             <li className={navbarItemClasses}><Link href="/">Home</Link></li>
             <li className={navbarItemClasses}>About</li>
-            <li className={navbarItemClasses}><Link href="/articles">Read</Link></li>
-            <li className={navbarItemClasses}><Link href="/write">Write</Link></li>
+            <li className={navbarItemClasses}><Link href="/articles/browse">Read</Link></li>
+            <li className={navbarItemClasses}><Link href="/articles/write">Write</Link></li>
             <li className={navbarItemClasses}>Contact</li>
             <li className={navbarItemClasses + ' block md:hidden'}><Link href="/login">Log in / Sign up</Link></li>
             <li className={navbarItemClasses + ' block md:hidden'} onClick={() => {localStorage.clear(); window.location.reload()}}>Log out</li>
@@ -101,7 +122,9 @@ export default function Navbar() {
           </div>
         </ShowIf>
         <div className='hidden md:block mr-12'><CustomInput  placeholder="Search..." /></div>
-        <ImageButton onClick={toggleTheme} className="h-9 w-9 relative items-center">{getThemeImage()}</ImageButton>
+        <ImageButton onClick={toggleTheme} className="h-9 w-9 relative items-center">
+          <Image fill={true} alt='Theme change' src={themeIconSrc} />
+        </ImageButton>
       </div>
       </div>
     </div>

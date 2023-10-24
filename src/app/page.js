@@ -32,7 +32,7 @@ export default function Home() {
             <div className='m-3'>
               <h2 className='font-bold mb-8 md:mb-0'>Navigation</h2>
                 <ul className='[&>*]:mb-8 md:[&>*]:mb-0'>
-                  <li className='hover:bg-gray-100 px-1 dark:hover:bg-neutral-600 rounded-md'><Link href="/articles">Get started</Link></li>
+                  <li className='hover:bg-gray-100 px-1 dark:hover:bg-neutral-600 rounded-md'><Link href="/articles/browse">Get started</Link></li>
                   <li className='hover:bg-gray-100 px-1 dark:hover:bg-neutral-600 rounded-md'><Link href="/login">Login / Sign up</Link></li>
                   <li className='hover:bg-gray-100 px-1 dark:hover:bg-neutral-600 rounded-md'><Link href="/profile">My profile</Link></li>
                   <li className='hover:bg-gray-100 px-1 dark:hover:bg-neutral-600 rounded-md'>Placeholder</li>

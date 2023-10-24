@@ -10,7 +10,7 @@ export default function PageComponent({children, title}) {
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
         </Head>
-        <div className="bg-neutral-100 dark:bg-black text-neutral-900 dark:text-neutral-200 w-full min-h-screen">
+        <div className="bg-neutral-100 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-200 w-full min-h-screen">
         <header className="mb-10">
         <Navbar />
         </header>

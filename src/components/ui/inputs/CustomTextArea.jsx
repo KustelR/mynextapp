@@ -40,7 +40,7 @@ export default function CustomTextArea({id, placeholder, className, label}) {
             placeholder={placeholder}
             cols="30" 
             rows="10"
-            className='w-full outline-0 p-1 bg-neutral-100 dark:bg-neutral-800 align-top'>
+            className='w-full outline-0 p-1 bg-neutral-100 dark:bg-neutral-700 align-top'>
         </textarea>
         <div className={underDiv}></div>
     </div>

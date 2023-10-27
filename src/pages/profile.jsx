@@ -70,7 +70,7 @@ export default function Personal() {
 
   return (
     <PageComponent>
-      <div className='bg-white dark:bg-neutral-800 min-h-screen md:w-10/12 lg:w-8/12 mx-auto shadow-2xl p-3'>
+      <div className='bg-white dark:bg-neutral-800 md:w-10/12 lg:w-8/12 mx-auto shadow-2xl p-3'>
         <h1 className='text-2xl font-bold'>Personal profile of {userdata.login}</h1>
         <div>
           <p>Your nickname: {userdata.nickname}</p>

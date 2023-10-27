@@ -103,11 +103,11 @@ export default function Navbar() {
       <div className='flex md:items-center'>
         <ShowIf
         isVisible={isLoggedIn}
-        className="hidden md:flex">
+        className="hidden md:flex items-center">
           <div className='text-xl font-bold md:text-base md:font-normal py-2 px-4 h-full md:h-fit flex items-center'>
             <Link href="/profile">Profile</Link>
           </div>
-          <div className='md:mr-8'>
+          <div className='hidden lg:flex lg:mr-8'>
             <TextButton onClick={() => {localStorage.clear(); window.location.reload()}}>Log out</TextButton>
           </div>
         </ShowIf>

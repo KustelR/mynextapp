@@ -5,17 +5,12 @@ import fetchFromApi from '@/scripts/fetchFromApi'
 import ArticleView from './ArticleView';
 
 
-async function fetchArticle(url, title) {
-  return await fetchFromApi(url, {title: title})
-}
-
-
 export default function Article({className}) {
   const router = useRouter()
   const [article, setArticle] = useState({})
   const [technicalMessage, setTechnicalMessage] = useState(null);
 
-  async function loadArticle(title) {
+  async function loadArticle(query) {
     setTechnicalMessage(
       <div>
         <div className='font-bold'>
@@ -23,17 +18,19 @@ export default function Article({className}) {
         </div>
       </div>
     )
-    if ((!title)) return;
+    if ((!query)) return;
     try {
-      setArticle((await fetchArticle('/api/v1/articles/get', title)).data);
+      const response = await fetchFromApi("/api/v1/articles", query)
+      setArticle(response.data);
+      
     }
     catch (error) {
       if (!(error.response)) throw error;
-      if (error.response.status === 404 && title) {
+      if (error.response.status === 404 && query) {
         setTechnicalMessage(
           <div>
             <div className='font-bold'>
-              404 | Sorry, article with this title was not found
+              404 | Sorry, such article was not found
             </div>
           </div>
         )
@@ -45,13 +42,13 @@ export default function Article({className}) {
   }
 
   useEffect(() => {
-      loadArticle(router.query.title)
+      loadArticle(router.query)
   }, [router.isReady, router.query])
 
 
   return (
-    <div className={'container md:shadow-lg max-w-screen-md mx-auto p-4 min-h-screen ' + className}>
-    <div>{technicalMessage}</div>
+    <div className={'container md:shadow-lg max-w-screen-md mx-auto p-4 ' + className}>
+      <div>{technicalMessage}</div>
       <ArticleView article={article} />
     </div>
   )

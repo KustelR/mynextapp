@@ -19,7 +19,7 @@ export default function Home() {
 
   async function loadArticlePreviews(query) {
     try {
-      setArticles((await fetchFromApi('/api/v1/articles/get/previews', {q: query})).data);
+      setArticles((await fetchFromApi('/api/v1/articles/previews', query)).data);
     }
     catch (error) {
       console.error(error)
@@ -33,7 +33,7 @@ export default function Home() {
 
     return (
       <PageComponent>
-      <div className='container md:shadow-lg max-w-screen-md mx-auto p-4 bg-white dark:bg-neutral-900'>
+      <div className='container md:shadow-lg max-w-screen-md mx-auto p-4 bg-white dark:bg-neutral-800'>
         <CustomInput className="mb-2" label={<h2 className='font-bold text-2xl'>Search</h2>} onChange={updateSearchQuery}/>
         <ul>
           <li>

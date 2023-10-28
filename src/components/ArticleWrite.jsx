@@ -15,7 +15,7 @@ export default function ArticleWrite({className}) {
     <div className={'container md:shadow-lg max-w-screen-md mx-auto p-4 ' + className}>
         <SendableForm 
             href="/api/v1/articles"
-            submitHandler={(url, element, callback) => {sendFormData(url, element, callback, [["body", articleBody], ["accessToken", localStorage.getItem('accessToken')]])}}>
+            submitHandler={(url, element, callback) => {sendFormData(url, element, callback, {"body": articleBody}, {"x-access-token": localStorage.getItem('accessToken')})}}>
             <CustomInput
               label="Title" 
               id="title" 

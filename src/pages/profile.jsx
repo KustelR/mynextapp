@@ -14,12 +14,7 @@ import Image from 'next/image';
 
 
 async function fetchUser(accessToken) {
-  return new Promise(function(resolve, reject) {
-    axios.get('/api/v1/users/me', 
-      {params: {access_token: accessToken}})
-    .then(response => {resolve(response)})
-    .catch(err => {reject(err);});
-  })
+    return await axios.get('/api/v1/users/me', {headers: {"x-access-token": accessToken}})
 }
 
 

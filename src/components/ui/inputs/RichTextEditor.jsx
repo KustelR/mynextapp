@@ -88,7 +88,6 @@ function ToolbarPlugin() {
   const [editor] = useLexicalComposerContext();
   return (
     <div>
-      <div>Styling</div>
     <div className='flex mb-1 border-y-2 border-neutral-200 dark:border-neutral-600'>
       <HeadingToolbarPlugin />
       <ListToolbarPlugin />

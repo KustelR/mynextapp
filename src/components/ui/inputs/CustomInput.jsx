@@ -20,7 +20,7 @@ import ShowIf from '@/components/ui/ShowIf';
  * @param {*} props.reference Refs to be set on input element
  * @param {string} props.className Classes (will be applied to root div of the component)
  * @param {string} props.autoComplete Autocomplete property
- * @returns React.JSX.Element
+ * @returns ```React.JSX.Element```
  */
 export default function CustomInput(props) {
   const {id, label, type, advice, placeholder, validation, validationMessage, 

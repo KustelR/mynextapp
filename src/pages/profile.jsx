@@ -31,7 +31,7 @@ async function handleFetchUser() {
       const refreshToken = localStorage.getItem('refreshToken');
       let refreshMessage;
       if (response.data.message === 'jwt expired') {
-        refreshMessage = await fetchFromApi('/auth/v1/get_access_token', {refresh_token: refreshToken});
+        refreshMessage = await fetchFromApi('/auth/v1/accesstoken', {refresh_token: refreshToken});
       }
       
       if (refreshMessage && refreshMessage.data) {

@@ -3,6 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowUp, faArrowDown} from '@fortawesome/free-solid-svg-icons'
 import TextButton from '@/components/ui/TextButton'
 import UnixToUTC from '@/scripts/UnixToUTC'
+import axios from 'axios'
+
+
+async function handleDeletion(article) {
+  await axios.delete("/api/v1/articles", {headers: {'x-access-token': localStorage.getItem('accessToken')}, params: {'_id': article._id}})
+}
 
 
 export default function ArticleView({article}) {
@@ -29,7 +35,9 @@ export default function ArticleView({article}) {
           </button>
         </span>
         <span>
-          <TextButton className="mr-2 p-0 px-1">
+          <TextButton 
+            className="mr-2 p-0 px-1"
+            onClick={() => {handleDeletion(article)}}>
             Delete
           </TextButton>
           <TextButton className='p-0 px-1'>

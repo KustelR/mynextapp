@@ -14,7 +14,7 @@ import PendingBox from './ui/popups/PendingBox';
  * @param {string} href Url to which will be sent request with form data
  * @param {*} children Things to be set inside of the form
  * @param {function} submitHandler Function to be called when form is submitted
- * @returns {React.JSX.Element} JSX container for form elements
+ * @returns {React.JSX.Element}
  */
 export default function SendableForm({href, children, submitHandler}) {
 

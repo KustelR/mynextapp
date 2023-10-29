@@ -7,8 +7,8 @@ import axios from "axios";
  * @param {object} params specifies requset query params
  * @returns {Promise<AxoisResponse>} response from server
  */
-async function fetchFromApi(url, params) {
-    return axios.get(url, {params: params})
+async function fetchFromApi(url, params, headers) {
+    return axios.get(url, {params: params, headers: headers})
 }
 
 

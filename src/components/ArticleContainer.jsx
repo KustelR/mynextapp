@@ -20,7 +20,7 @@ export default function Article({className}) {
     )
     if ((!query)) return;
     try {
-      const response = await fetchFromApi("/api/v1/articles", query)
+      const response = await fetchFromApi("/api/v1/articles", query, {"x-access-token": localStorage.getItem("accessToken")});
       setArticle(response.data);
       
     }

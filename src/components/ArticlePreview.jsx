@@ -24,7 +24,7 @@ export default function ArticlePreview({article}) {
                 </ul>
             </div>
             <div>
-                <span className='mr-4 font-bold'><FontAwesomeIcon className='mr-1' icon={faArrowUp} />{article.upvotes - article.downvotes}<FontAwesomeIcon className='ml-1' icon={faArrowDown} /></span>
+                <span className='mr-4 font-bold'><FontAwesomeIcon className='mr-1' icon={faArrowUp} />{article.votes}<FontAwesomeIcon className='ml-1' icon={faArrowDown} /></span>
             </div>
         </div>
     </Link>

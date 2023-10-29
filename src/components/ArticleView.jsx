@@ -28,7 +28,7 @@ export default function ArticleView({article}) {
             <FontAwesomeIcon className='mr-1' icon={faArrowUp} />
             {article.upvotes}
           </button>
-          <span className='mr-4 font-bold'>{article.upvotes - article.downvotes}</span>
+          <span className='mr-4 font-bold'>{article.votes}</span>
           <button className=' text-red-400 dark:text-red-600'>
             {article.downvotes}
             <FontAwesomeIcon className='ml-1' icon={faArrowDown} />

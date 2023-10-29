@@ -1,7 +1,6 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faArrowUp, faArrowDown} from '@fortawesome/free-solid-svg-icons'
+import React, {useState} from 'react'
 import TextButton from '@/components/ui/TextButton'
+import LikeCounter from './LikeCounter'
 import UnixToUTC from '@/scripts/UnixToUTC'
 import axios from 'axios'
 
@@ -23,17 +22,7 @@ export default function ArticleView({article}) {
       <div className='prose lg:prose-lg dark:prose-invert max-w-none font-serif'>
       <div dangerouslySetInnerHTML={{__html: article.body}}/>
       <div className='flex justify-between border-t-2 border-neutral-400 py-1'>
-        <span>
-          <button className='mr-4 text-green-400 dark:text-green-600'>
-            <FontAwesomeIcon className='mr-1' icon={faArrowUp} />
-            {article.upvotes}
-          </button>
-          <span className='mr-4 font-bold'>{article.votes}</span>
-          <button className=' text-red-400 dark:text-red-600'>
-            {article.downvotes}
-            <FontAwesomeIcon className='ml-1' icon={faArrowDown} />
-          </button>
-        </span>
+      <LikeCounter article={article} />
         <span>
           <TextButton 
             className="mr-2 p-0 px-1"

@@ -92,7 +92,6 @@ export default function Navbar() {
           <ul className={navbarClasses}>
           <li className={navbarItemClasses + ' block md:hidden'}><CustomInput placeholder="Search..." /></li>
           <li className={navbarItemClasses + ' block md:hidden'}><Link href="/profile">Profile</Link></li>
-            <li className={navbarItemClasses}><NextLink href="/">Home</NextLink></li>
             <li className={navbarItemClasses}><Link to="/app/browse">Read</Link></li>
             <li className={navbarItemClasses}><Link to="/app/article/write">Write</Link></li>
             <li className={navbarItemClasses}>Contact</li>

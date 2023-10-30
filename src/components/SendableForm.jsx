@@ -7,7 +7,15 @@ import SuccessBox from './ui/popups/SuccessBox';
 import ErrorBox from './ui/popups/ErrorBox';
 import PendingBox from './ui/popups/PendingBox';
 
-
+/**
+ * Container for forms that (kinda) automatically finds 
+ * inputs inside of it and sends data to specified url
+ * @param {object}  param0 react component props
+ * @param {string} href Url to which will be sent request with form data
+ * @param {*} children Things to be set inside of the form
+ * @param {function} submitHandler Function to be called when form is submitted
+ * @returns {React.JSX.Element}
+ */
 export default function SendableForm({href, children, submitHandler}) {
 
     const [isFailed, setIsFailed] = useState();

@@ -2,6 +2,7 @@ import axios from 'axios';
 import {generatePasswordHash} from '../passgen';
 import createDataObject from './createObjectFromForm';
 import clearForm from './clearForm';
+import postToApi from '@/scripts/postToApi';
 
 
 async function sendFormData(url, element, callback) {
@@ -11,9 +12,15 @@ async function sendFormData(url, element, callback) {
         data.password = await generatePasswordHash(data.password, 'salt');
     }
 
-    await axios.post(url, data, {headers: "application/json"})
-        .then(response => {callback(response, null); clearForm(element);})
-        .catch(err => {callback(null, err);});
+    let response;
+    try {
+        response = await postToApi(url, data, {headers: "application/json"})
+    }
+    catch(err) {
+        callback(null, err);
+        return;
+    }
+    callback(response, null); clearForm(element);
 }
 
 export {

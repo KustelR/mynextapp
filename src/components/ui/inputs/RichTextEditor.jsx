@@ -88,7 +88,6 @@ function ToolbarPlugin() {
   const [editor] = useLexicalComposerContext();
   return (
     <div>
-      <div>Styling</div>
     <div className='flex mb-1 border-y-2 border-neutral-200 dark:border-neutral-600'>
       <HeadingToolbarPlugin />
       <ListToolbarPlugin />
@@ -122,7 +121,10 @@ export default function RichTextEditor({onChange, className, label}) {
       <LexicalComposer initialConfig={initialConfig}>
       <ToolbarPlugin/>
       <RichTextPlugin
-        contentEditable={<ContentEditable className={"prose max-w-none dark:prose-invert w-full outline-0 p-1 bg-gray-100 dark:bg-neutral-800 align-top min-h-200px border-b-2 border-neutral-200 focus:border-neutral-400 transition-all duration-400 " + className} />}
+        contentEditable={
+          <ContentEditable 
+          className={
+            "prose max-w-none dark:prose-invert w-full outline-0 bg-gray-100 dark:bg-neutral-700 focus:bg-transparent dark:focus:bg-transparent align-top min-h-200px border-b-2 border-neutral-200 focus:border-neutral-400 transition-all duration-400 " + className} />}
         ErrorBoundary={LexicalErrorBoundary}
       />
       <HistoryPlugin />

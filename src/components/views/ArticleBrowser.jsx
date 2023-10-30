@@ -1,10 +1,7 @@
-import '@/app/globals.css'
-
 import React, {useEffect, useState}  from 'react'
 import fetchFromApi from '@/scripts/fetchFromApi'
 import CustomInput from '@/components/ui/inputs/CustomInput';
-import ArticlePreview from '@/components/ArticlePreview';
-import PageComponent from '@/components/spalike/PageComponent';
+import ArticlePreview from '@/components/articles/ArticlePreview';
 
 
 export default function Home() {
@@ -32,7 +29,6 @@ export default function Home() {
 
 
     return (
-      <PageComponent>
       <div className='container md:shadow-lg max-w-screen-md mx-auto p-4 bg-white dark:bg-neutral-800'>
         <CustomInput className="mb-2" label={<h2 className='font-bold text-2xl'>Search</h2>} onChange={updateSearchQuery}/>
         <ul>
@@ -43,7 +39,5 @@ export default function Home() {
           </li>
         </ul>
       </div>
-      </PageComponent>
     )
   }
-  

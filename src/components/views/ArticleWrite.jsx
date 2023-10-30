@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 
-import SendableForm from './SendableForm'
-import CustomInput from './ui/inputs/CustomInput'
+import SendableForm from '../SendableForm'
+import CustomInput from '../ui/inputs/CustomInput'
 import CustomTextArea from '@/components/ui/inputs/CustomTextArea'
-import TextButton from './ui/TextButton'
+import TextButton from '../ui/TextButton'
 import { sendFormData } from '@/scripts/forms/sendArticle'
 import RichTextEditor from '@/components/ui/inputs/RichTextEditor'
 

@@ -15,15 +15,13 @@
     "axios": "^1.5.1",
     "classnames": "^2.3.2",
     "clsx": "^2.0.0",
-    "crypto-js": "^4.1.1",
+    "crypto-js": "^4.2.0",
     "dotenv": "^16.3.1",
     "fortawesome": "^0.0.1-security",
-    "lexical": "^0.12.2",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
     "react-router-dom": "^6.16.0",
-    "sass": "^1.69.0",
     "sharp": "^0.32.6"
   },
   "devDependencies": {
@@ -32,10 +30,14 @@
     "@lexical/rich-text": "^0.12.2",
     "@lexical/selection": "^0.12.2",
     "@tailwindcss/typography": "^0.5.10",
+    "@types/node": "20.8.9",
+    "@types/react": "18.2.33",
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
+    "lexical": "^0.12.2",
     "postcss": "^8",
+    "sass": "^1.69.0",
     "tailwindcss": "^3"
   }
 }

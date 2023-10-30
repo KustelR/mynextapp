@@ -2,7 +2,7 @@ import React, {useEffect, useState}  from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import fetchFromApi from '@/scripts/fetchFromApi'
-import ArticleView from './ArticleView';
+import ArticleView from '@/components/articles/ArticleView';
 
 
 export default function Article({className}) {
@@ -42,7 +42,8 @@ export default function Article({className}) {
   }
 
   useEffect(() => {
-      loadArticle(router.query)
+    const query = router.query;
+    loadArticle(query)
   }, [router.isReady, router.query])
 
 

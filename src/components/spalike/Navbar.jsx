@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import Link from 'next/link';
+import NextLink from 'next/link';
+import { Link } from 'react-router-dom'
 import Image from 'next/image';
 
 
@@ -85,18 +86,17 @@ export default function Navbar() {
               <FontAwesomeIcon className='fa-2x' icon={faBars} />
             </button>
             <div className='flex items-center justify-center'>
-              <h1 className=' md:hover:rotate-1 md:hover:scale-105 text-2xl'><Link href="/">KUST</Link></h1>
+              <h1 className=' md:hover:rotate-1 md:hover:scale-105 text-2xl'><NextLink href="/">KUST</NextLink></h1>
             </div>
           </div>
           <ul className={navbarClasses}>
           <li className={navbarItemClasses + ' block md:hidden'}><CustomInput placeholder="Search..." /></li>
           <li className={navbarItemClasses + ' block md:hidden'}><Link href="/profile">Profile</Link></li>
-            <li className={navbarItemClasses}><Link href="/">Home</Link></li>
-            <li className={navbarItemClasses}>About</li>
-            <li className={navbarItemClasses}><Link href="/articles/browse">Read</Link></li>
-            <li className={navbarItemClasses}><Link href="/articles/write">Write</Link></li>
+            <li className={navbarItemClasses}><NextLink href="/">Home</NextLink></li>
+            <li className={navbarItemClasses}><Link to="/app/browse">Read</Link></li>
+            <li className={navbarItemClasses}><Link to="/app/article/write">Write</Link></li>
             <li className={navbarItemClasses}>Contact</li>
-            <li className={navbarItemClasses + ' block md:hidden'}><Link href="/login">Log in / Sign up</Link></li>
+            <li className={navbarItemClasses + ' block md:hidden'}><Link to="app/login">Log in / Sign up</Link></li>
             <li className={navbarItemClasses + ' block md:hidden'} onClick={() => {localStorage.clear(); window.location.reload()}}>Log out</li>
         </ul>
       </div>
@@ -105,7 +105,7 @@ export default function Navbar() {
         isVisible={isLoggedIn}
         className="hidden md:flex items-center">
           <div className='text-xl font-bold md:text-base md:font-normal py-2 px-4 h-full md:h-fit flex items-center'>
-            <Link href="/profile">Profile</Link>
+            <Link to="/app/profile">Profile</Link>
           </div>
           <div className='hidden lg:flex lg:mr-8'>
             <TextButton onClick={() => {localStorage.clear(); window.location.reload()}}>Log out</TextButton>

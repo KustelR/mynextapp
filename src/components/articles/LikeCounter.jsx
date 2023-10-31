@@ -40,6 +40,7 @@ export default function LikeCounter(props) {
     }
 
     useEffect(() => {
+      if (Object.keys(article).length === 0 && article.constructor === Object) return;
       if (article.requesterVote == 1) {
         setLikeCount(article.votes - 1)
 
@@ -53,7 +54,7 @@ export default function LikeCounter(props) {
       else {
         setLikeCount(article.votes);
       }
-    }, [article.requesterVote])
+    }, [article])
 
     const upvoteClassNames = classNames('px-2 mr-4 text-green-400 dark:text-green-600 rounded-xl border-2', {'border-green-300 dark:border-green-700': liked})
     const downvoteClassNames = classNames('px-2 text-red-400 dark:text-red-600 rounded-xl border-2', {'border-red-300 dark:border-red-700': disliked})

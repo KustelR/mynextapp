@@ -16,7 +16,7 @@ import ShowIf from '../ui/ShowIf'
 export default function Navbar() {
   const [visbility, setVisibility] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [themeIconSrc, setThemeIconSrc] = useState("");
+  const [themeIconSrc, setThemeIconSrc] = useState("/");
 
   function toggleVisibility() {
     setVisibility(!visbility);

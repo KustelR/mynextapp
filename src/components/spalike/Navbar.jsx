@@ -16,7 +16,7 @@ import ShowIf from '../ui/ShowIf'
 export default function Navbar() {
   const [visbility, setVisibility] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [themeIconSrc, setThemeIconSrc] = useState("/");
+  const [themeIconSrc, setThemeIconSrc] = useState("/../../assets/theme/icons8-moon-50.png");
 
   function toggleVisibility() {
     setVisibility(!visbility);
@@ -82,7 +82,10 @@ export default function Navbar() {
       <div className='flex w-full justify-between'>
         <div className='md:flex justify-between md:justify-normal items-center'>
           <div className='flex'>
-            <button onClick={toggleVisibility} className='mr-4 p-1 h-fit md:mr-0 md:invisible md:w-0'>
+            <button 
+              aria-label='Mobile navigaton'
+              onClick={toggleVisibility} 
+              className='mr-4 p-1 h-fit md:mr-0 md:invisible md:w-0'>
               <FontAwesomeIcon className='fa-2x' icon={faBars} />
             </button>
             <div className='flex items-center justify-center'>

@@ -16,6 +16,9 @@ export default function App() {
   return (
     <Router>
       <div className='bg-neutral-100 dark:bg-neutral-900 dark:text-white'>
+        <head>
+          <title>loh</title>
+        </head>
         <div className='min-h-screen'>
             <Navbar />
             <div className='mt-4'>

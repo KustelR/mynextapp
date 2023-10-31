@@ -1,11 +1,13 @@
 import React, {useEffect, useState}  from 'react'
 import Image from 'next/image'
+import LikeCounter from '@/components/articles/LikeCounter'
 import { useRouter } from 'next/router'
 import fetchFromApi from '@/scripts/fetchFromApi'
 import ArticleView from '@/components/articles/ArticleView';
+import Controls from '@/components/articles/Controls';
 
 
-export default function Article({className}) {
+export default function Article({className, onLoad}) {
   const router = useRouter()
   const [article, setArticle] = useState({})
   const [technicalMessage, setTechnicalMessage] = useState(null);
@@ -39,19 +41,24 @@ export default function Article({className}) {
       throw error
     }
     setTechnicalMessage(null);
+    if (typeof(onLoad) === "function") onLoad();
   }
 
   useEffect(() => {
     const query = router.query;
     if (Object.keys(query).length === 0 && query.constructor === Object) return;
-    loadArticle(query)
+    loadArticle(query);
   }, [router.isReady, router.query])
 
 
   return (
     <div className={'container md:shadow-lg max-w-screen-md mx-auto p-4 ' + className}>
       <div>{technicalMessage}</div>
-      <ArticleView article={article} />
+      <ArticleView style={{minHeight: '600px'}} article={article} />
+      <div className='flex justify-between border-t-2 border-neutral-400 py-1'>
+        <LikeCounter article={article} />
+        <Controls></Controls>
+      </div>
     </div>
   )
 }

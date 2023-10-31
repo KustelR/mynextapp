@@ -17,6 +17,13 @@ module.exports = {
         '200px': '200px',
         '500px': '500px'
       },
+      display: {
+        'webkit-box': "-webkit-box"
+      },
+      maxWidth: {
+        '30ch': '30ch',
+        '8/10': '80%'
+      },
       minWidth: {
         '1/2': '50%',
         '8/10': '80%'

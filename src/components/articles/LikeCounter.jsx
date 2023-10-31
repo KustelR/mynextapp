@@ -61,17 +61,19 @@ export default function LikeCounter(props) {
 
   return (
     <span>
-          <button 
-            className={upvoteClassNames}
-            onClick={() => {voteArticle(article, 1); like()}}>
-            <FontAwesomeIcon icon={faArrowUp} />
-          </button>
-          <span className='mr-4 font-bold'>{likeCount + likeOffset}</span>
-          <button 
-            className={downvoteClassNames}
-            onClick={() => {voteArticle(article, -1); dislike()}}>
-            <FontAwesomeIcon icon={faArrowDown} />
-          </button>
-        </span>
+      <button
+        aria-label='Like article' 
+        className={upvoteClassNames}
+        onClick={() => {voteArticle(article, 1); like()}}>
+        <FontAwesomeIcon icon={faArrowUp} />
+      </button>
+      <span className='mr-4 font-bold'>{likeCount + likeOffset}</span>
+      <button 
+        aria-label='Dislike article' 
+        className={downvoteClassNames}
+        onClick={() => {voteArticle(article, -1); dislike()}}>
+        <FontAwesomeIcon icon={faArrowDown} />
+      </button>
+    </span>
   )
 }

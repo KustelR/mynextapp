@@ -5,3 +5,10 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}

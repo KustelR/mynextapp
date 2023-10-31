@@ -43,6 +43,7 @@ export default function Article({className}) {
 
   useEffect(() => {
     const query = router.query;
+    if (Object.keys(query).length === 0 && query.constructor === Object) return;
     loadArticle(query)
   }, [router.isReady, router.query])
 

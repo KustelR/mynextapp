@@ -57,7 +57,7 @@ export default function Article({className, onLoad}) {
       <ArticleView style={{minHeight: '600px'}} article={article} />
       <div className='flex justify-between border-t-2 border-neutral-400 py-1'>
         <LikeCounter article={article} />
-        <Controls></Controls>
+        <Controls article={article}></Controls>
       </div>
     </div>
   )

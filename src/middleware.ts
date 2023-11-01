@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const searchParams = ((request.nextUrl.searchParams + "") ? "?" + request.nextUrl.searchParams : "");
   const apiVersion = request.nextUrl.pathname.slice(5,8);
-  if (apiVersion === "v2") {
+  if (apiVersion.includes("v2")) {
     return NextResponse.redirect(new URL(process.env.API_HOST + pathname + searchParams, request.url))
   }
   else {

@@ -1,17 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import classNames from 'classnames'
 import Head from 'next/head'
 import Link from 'next/link'
-import '../app/globals.css';
+import fetchFromApi from '@/scripts/fetchFromApi'
+import '../../app/globals.css';
 
 import ArticleContainer from '@/components/views/ArticleContainer';
 
 
-export default function ReadArticle() {
-
-  const [isArticleLoaded, setIsArticleLoaded] = useState(false);
-
-
+export default function ReadArticle({article}) {
   useEffect(() => {
     let isDarkTheme = false;
     localStorage.getItem("theme") === "dark" ? 
@@ -25,10 +22,6 @@ export default function ReadArticle() {
     }
   }, [])
 
-  const articleClassNames = classNames(
-    {'hidden': !isArticleLoaded}
-  )
-
   return (
     <div className={'bg-neutral-100 dark:bg-neutral-900 dark:text-white min-h-screen'}>
       <Head>
@@ -40,9 +33,35 @@ export default function ReadArticle() {
           </span>
         </Link>
         </nav>
-      <div className={articleClassNames}>
-        <ArticleContainer className="bg-white dark:bg-neutral-800" onLoad={() => {setIsArticleLoaded(true)}}/>
+      <div>
+        <ArticleContainer 
+          className="bg-white dark:bg-neutral-800" 
+          article={article}/>
       </div>
     </div>
   )
 }
+
+
+export async function getServerSideProps(context) {
+  const article = (await fetchFromApi("http://localhost:5000/api/v2/articles", {_id: context.params.id}, {})).data;
+
+  return {
+    props: {
+      article,
+    }
+  }
+}
+
+/*
+export async function getStaticPaths() {
+    const articles = (await fetchFromApi("http://localhost:3000/api/v2/articles", {}, {})).data;
+    const paths = articles.map((article) => {
+        return {params: {id: article._id}};
+  })
+  return {
+    paths,
+    fallback: false
+  }
+}
+*/

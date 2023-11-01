@@ -53,7 +53,7 @@ export default function Personal() {
       return 1;
     }
     try {
-      handleFetchUser().then(response => {setUserdata(response? response.data.user : {errorMessage: "user is not loaded"})})
+      handleFetchUser().then(response => {setUserdata(response? response.data : {errorMessage: "user is not loaded"})})
     }
     catch (error) {
       alert(error);

@@ -44,7 +44,7 @@ export default function ReadArticle({article}) {
 
 
 export async function getServerSideProps(context) {
-  const article = (await fetchFromApi("http://localhost:5000/api/v2/articles", {_id: context.params.id}, {})).data;
+  const article = (await fetchFromApi("http://localhost:5000/api/v2/articles", {_id: context.params.id}, {'x-article-limit': 1})).data;
 
   return {
     props: {
@@ -52,16 +52,3 @@ export async function getServerSideProps(context) {
     }
   }
 }
-
-/*
-export async function getStaticPaths() {
-    const articles = (await fetchFromApi("http://localhost:3000/api/v2/articles", {}, {})).data;
-    const paths = articles.map((article) => {
-        return {params: {id: article._id}};
-  })
-  return {
-    paths,
-    fallback: false
-  }
-}
-*/

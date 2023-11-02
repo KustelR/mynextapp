@@ -6,9 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowUp, faArrowDown} from '@fortawesome/free-solid-svg-icons'
 
 
-async function voteArticle(article, voteChange) {
-    await axios.put("/api/v1/articles/vote", {voteChange: voteChange}, {headers: {'x-access-token': localStorage.getItem('accessToken')}, params: {'_id': article._id}})
+async function voteArticle(articleId, voteChange) {
+    await axios.put("/api/v2/articles/vote", {voteChange: voteChange}, {headers: {'x-access-token': localStorage.getItem('accessToken')}, params: {'_id': articleId}})
   }
+
+async function getLikes(articleId) {
+  const response = await axios.get("/api/v2/articles", {headers: {'x-access-token': localStorage.getItem('accessToken'), 'x-article-limit': 1}, params: {'_id': articleId}});
+  return {likes: response.data.votes, yourVote: response.data.requesterVote}
+}
 
 
 /**
@@ -18,60 +23,63 @@ async function voteArticle(article, voteChange) {
  * @returns 
  */
 export default function LikeCounter(props) {
-    const {article} = props;
-
-    const [liked, setLiked] = useState(false);
-    const [disliked, setDisliked] = useState(false);
-    const [likeOffset, setLikeOffset] = useState(0);
+    const {articleId} = props;
     const [likeCount, setLikeCount] = useState(0);
+    const [isLiked, setIsLiked] = useState(null);
 
-    function like() {
-        if (liked) {setLiked(false); setLikeOffset(0); return}
-        setLiked(true);
-        setDisliked(false);
-        setLikeOffset(1)
+    async function updateLikes() {
+        const likeData = await getLikes(articleId);
+        setLikeCount(likeData.likes)
+      if (likeData.yourVote === 1) {
+        setIsLiked(true)
+      }
+      else if (likeData.yourVote === -1) {
+        setIsLiked(false);
+      } else {
+        setIsLiked(null);
+      }
     }
 
-    function dislike() {
-        if (disliked) {setDisliked(false); setLikeOffset(0); return}
-        setDisliked(true);
-        setLiked(false);
-        setLikeOffset(-1);
+    async function like() {
+        await voteArticle(articleId, 1)
+        await updateLikes();
+    }
+
+    async function dislike() {
+        await voteArticle(articleId, -1)
+        await updateLikes();
     }
 
     useEffect(() => {
-      if (Object.keys(article).length === 0 && article.constructor === Object) return;
-      if (article.requesterVote == 1) {
-        setLikeCount(article.votes - 1)
+        async function loadLikes() {
+            const likeData = await getLikes(articleId);
+            setLikeCount(likeData.likes);
+            if (likeData.yourVote === 1) {
+                setIsLiked(true);
+            }
+            else if (likeData.yourVote === -1) {
+                setIsLiked(false);
+            }
+        }
+        loadLikes();
+    }, [])
 
-        like();
-      }
-      else if (article.requesterVote == -1) {
-        setLikeCount(article.votes + 1)
-
-        dislike();
-      }
-      else {
-        setLikeCount(article.votes);
-      }
-    }, [article])
-
-    const upvoteClassNames = classNames('px-2 mr-4 text-green-400 dark:text-green-600 rounded-xl border-2', {'border-green-300 dark:border-green-700': liked})
-    const downvoteClassNames = classNames('px-2 text-red-400 dark:text-red-600 rounded-xl border-2', {'border-red-300 dark:border-red-700': disliked})
+    const upvoteClassNames = classNames('px-2 mr-4 text-green-400 dark:text-green-600 rounded-xl border-2', {'border-green-300 dark:border-green-700': isLiked === true})
+    const downvoteClassNames = classNames('px-2 text-red-400 dark:text-red-600 rounded-xl border-2', {'border-red-300 dark:border-red-700': isLiked === false})
 
   return (
     <span>
       <button
         aria-label='Like article' 
         className={upvoteClassNames}
-        onClick={() => {voteArticle(article, 1); like()}}>
+        onClick={() => {like();}}>
         <FontAwesomeIcon icon={faArrowUp} />
       </button>
-      <span className='mr-4 font-bold'>{likeCount + likeOffset}</span>
+      <span className='mr-4 font-bold'>{likeCount}</span>
       <button 
         aria-label='Dislike article' 
         className={downvoteClassNames}
-        onClick={() => {voteArticle(article, -1); dislike()}}>
+        onClick={() => {dislike()}}>
         <FontAwesomeIcon icon={faArrowDown} />
       </button>
     </span>

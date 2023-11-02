@@ -43,7 +43,6 @@ export default function App() {
       </div>
         <Router>
         <div className='min-h-screen'>
-          <button onClick={() => {addMessage("test message 3 lorem ipsum")}}>aboba</button>
             <Navbar />
             <div className='mt-4'>
                 <Routes>

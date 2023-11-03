@@ -24,7 +24,7 @@ import ShowIf from '@/components/ui/ShowIf';
  */
 export default function CustomInput(props) {
   const {id, label, type, advice, placeholder, validation, validationMessage, 
-   onChange, reference, className, autoComplete} = props;
+   onChange, reference, className, autoComplete, onInput} = props;
 
   const [isFocused, setIsFocused] = useState(false);
 
@@ -64,7 +64,8 @@ export default function CustomInput(props) {
     <ShowIf className="text-xs font-bold text-red-600 h-fit p-0.5" isVisible={validation === false}>{validationMessage}</ShowIf>
     </div>
         <input 
-          className={inputClasses} 
+          className={inputClasses}
+          onInput={onInput} 
           id={id} 
           type={type ? type : "text"} 
           placeholder={placeholder} 

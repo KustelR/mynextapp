@@ -78,12 +78,11 @@ export default function Navbar() {
 
 
   return (
-    <div className='flex w-full place-content-between shadow-inner border-bottom border-neutral-200 border-b-2 dark:border-transparent dark:bg-neutral-700 p-1 md:items-center'>
-      <div className='flex w-full justify-between'>
+    <nav className='flex w-full place-content-between shadow-inner border-bottom border-neutral-200 border-b-2 dark:border-transparent dark:bg-neutral-700 p-1 md:items-center'>
         <div className='md:flex justify-between md:justify-normal items-center'>
           <div className='flex'>
             <button 
-              aria-label='Mobile navigaton'
+              aria-label='toggle mobile navigaton'
               onClick={toggleVisibility} 
               className='mr-4 p-1 h-fit md:mr-0 md:invisible md:w-0'>
               <FontAwesomeIcon className='fa-2x' icon={faBars} />
@@ -115,7 +114,7 @@ export default function Navbar() {
         </ShowIf>
         <ShowIf isVisible={!isLoggedIn}>
           <div className='mr-12 hidden lg:block'>
-            <Link href="/login">
+            <Link to="/app/login">
               <TextButton >Log in / Register</TextButton>
             </Link>
           </div>
@@ -125,8 +124,6 @@ export default function Navbar() {
           <Image fill={true} alt='Theme change' src={themeIconSrc} />
         </ImageButton>
       </div>
-      </div>
-    </div>
-    
+    </nav>
   )
 }

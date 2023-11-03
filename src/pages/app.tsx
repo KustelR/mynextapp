@@ -35,11 +35,14 @@ export default function App() {
   }
 
   return (
-    <div className='bg-neutral-100 dark:bg-neutral-900 dark:text-white'>
+    <div className='bg-neutral-100 dark:bg-neutral-900 dark:text-white font-roboto'>
       <Head>
         <title>KUST HEIGHTS APP</title>
         <link rel="preconnect">localhost:5000</link>
         <meta name='description'>Kust heights SPA page</meta>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Lexend&family=Monoton&family=Roboto&display=swap" rel="stylesheet"></link>
       </Head>
       <div className='fixed text-white w-fit h-fit bottom-4 left-4 rounded-sm'>
         <ul>

@@ -23,8 +23,8 @@ export default function Navbar() {
   }
 
   const navbarClasses = classNames(
+    'h-fit',
     'md:flex',
-    'font-sans',
     {
       'visible': visbility, 
       'hidden': !visbility
@@ -33,7 +33,10 @@ export default function Navbar() {
   )
 
   const navbarItemClasses = classNames(
-    'mx-1',
+    'h-fit',
+    'mr-3',
+    'md:my-0',
+    'hover:bg-opacity-30',
     'hover:bg-neutral-200',
     'dark:hover:bg-neutral-600',
     'my-5',
@@ -78,48 +81,42 @@ export default function Navbar() {
 
 
   return (
-    <nav className='flex w-full place-content-between shadow-inner border-bottom border-neutral-200 border-b-2 dark:border-transparent dark:bg-neutral-700 p-1 md:items-center'>
-        <div className='md:flex justify-between md:justify-normal items-center'>
-          <div className='flex'>
-            <button 
+    <nav className='flex h-fit bg-primary text-white text-2xl w-full place-content-between shadow-inner border-bottom border-neutral-200 border-b-2 dark:border-transparent dark:bg-neutral-700 p-1'>
+        <div className='flex h-fit justify-between md:justify-normal items-end'>
+        <div className='md:w-0 md:h-0'>
+          <button 
               aria-label='toggle mobile navigaton'
               onClick={toggleVisibility} 
-              className='mr-4 p-1 h-fit md:mr-0 md:invisible md:w-0'>
+              className='mr-1 p-1 h-fit md:mr-0 md:invisible md:w-0'>
               <FontAwesomeIcon className='fa-2x' icon={faBars} />
             </button>
-            <div className='flex items-center justify-center'>
-              <h1 className=' md:hover:rotate-1 md:hover:scale-105 text-2xl'><NextLink href="/">KUST</NextLink></h1>
-            </div>
-          </div>
+        </div>
+          <h1 className=' md:ml-3 mr-3 md:hover:rotate-1 md:hover:scale-105 text-4xl'><NextLink className='font-bold' href="/">KUST</NextLink></h1>
           <ul className={navbarClasses}>
           <li className={navbarItemClasses + ' block md:hidden'}><CustomInput placeholder="Search..." /></li>
           <li className={navbarItemClasses + ' block md:hidden'}><Link to="/app/profile">Profile</Link></li>
             <li className={navbarItemClasses}><Link to="/app/browse">Read</Link></li>
             <li className={navbarItemClasses}><Link to="/app/article/write">Write</Link></li>
+            <li className={navbarItemClasses}><Link to="/about">About</Link></li>
             <li className={navbarItemClasses}>Contact</li>
             <li className={navbarItemClasses + ' block md:hidden'}><Link to="app/login">Log in / Sign up</Link></li>
             <li className={navbarItemClasses + ' block md:hidden'} onClick={() => {localStorage.clear(); window.location.reload()}}>Log out</li>
         </ul>
       </div>
-      <div className='flex md:items-center'>
+      <div className='flex md:items-end'>
         <ShowIf
         isVisible={isLoggedIn}
-        className="hidden md:flex items-center">
-          <div className='text-xl font-bold md:text-base md:font-normal py-2 px-4 h-full md:h-fit flex items-center'>
+        className="hidden md:flex h-fit items-end mr-8">
             <Link to="/app/profile">Profile</Link>
-          </div>
-          <div className='hidden lg:flex lg:mr-8'>
-            <TextButton onClick={() => {localStorage.clear(); window.location.reload()}}>Log out</TextButton>
-          </div>
         </ShowIf>
         <ShowIf isVisible={!isLoggedIn}>
           <div className='mr-12 hidden lg:block'>
             <Link to="/app/login">
-              <TextButton >Log in / Register</TextButton>
+              <TextButton className='p-0'>Log in / Register</TextButton>
             </Link>
           </div>
         </ShowIf>
-        <div className='hidden md:block mr-12'><CustomInput  placeholder="Search..." /></div>
+        <div className='hidden md:block mr-12'><CustomInput className='text-black' placeholder="Search..." /></div>
         <ImageButton onClick={toggleTheme} className="h-9 w-9 relative items-center">
           <Image fill={true} alt='Theme change' src={themeIconSrc} />
         </ImageButton>

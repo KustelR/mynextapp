@@ -25,6 +25,8 @@ export default function ReadArticle({article}) {
   return (
     <div className={'bg-neutral-100 dark:bg-neutral-900 dark:text-white min-h-screen'}>
       <Head>
+      <title>{article.title}</title>
+      <meta></meta>
       </Head>
         <nav className='h-16 flex justify-center items-center bg-gray-200 dark:bg-gray-800 mb-4'>
         <Link href="/app/browse">
@@ -44,7 +46,8 @@ export default function ReadArticle({article}) {
 
 
 export async function getServerSideProps(context) {
-  const article = (await fetchFromApi("http://localhost:5000/api/v2/articles", {_id: context.params.id}, {'x-article-limit': 1})).data;
+  const article = (await fetchFromApi("http://localhost:5000/api/v2/articles", 
+                                      {_id: context.params.id}, {'x-article-limit': 1})).data;
 
   return {
     props: {

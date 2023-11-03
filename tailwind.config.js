@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: '#e63946'
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -30,6 +33,11 @@ module.exports = {
       },
       backgroundSize: {
         '200%': '200%',
+      },
+      fontFamily: {
+        'monoton': ['"monoton"'],
+        'roboto': ['"roboto"'],
+        'lexend': ['Lexend', 'Arial', 'sans-serif']
       },
     },
   },

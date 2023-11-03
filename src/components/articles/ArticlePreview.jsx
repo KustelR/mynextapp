@@ -8,7 +8,7 @@ import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 export default function ArticlePreview({article}) {
   return (
     <Link href={"/articles/" + article._id}>
-        <div className='w-full bg-neutral-50 hover:bg-neutral-100 dark:bg-transparent dark:hover:bg-neutral-700 p-2 mb-2'>
+        <div className='w-full bg-neutral-50 hover:bg-neutral-100 dark:bg-transparent dark:hover:bg-neutral-700 p-2 mb-2 '>
             <div className='md:flex'>
                 <h3 className='font-bold mr-2'>{article.title}</h3>
                 <div className='opacity-60'>

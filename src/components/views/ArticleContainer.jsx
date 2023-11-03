@@ -1,56 +1,21 @@
-import React, {useEffect, useState}  from 'react'
+import React from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
-import fetchFromApi from '@/scripts/fetchFromApi'
 import ArticleView from '@/components/articles/ArticleView';
 
+const LikeCounter = React.lazy(() => import('@/components/articles/LikeCounter'))
+const Controls = React.lazy(() => import('@/components/articles/Controls'))
 
-export default function Article({className}) {
-  const router = useRouter()
-  const [article, setArticle] = useState({})
-  const [technicalMessage, setTechnicalMessage] = useState(null);
 
-  async function loadArticle(query) {
-    setTechnicalMessage(
-      <div>
-        <div className='font-bold'>
-          Wait | Sorry, we are loading article...
-        </div>
-      </div>
-    )
-    if ((!query)) return;
-    try {
-      const response = await fetchFromApi("/api/v1/articles", query, {"x-access-token": localStorage.getItem("accessToken")});
-      setArticle(response.data);
-      
-    }
-    catch (error) {
-      if (!(error.response)) throw error;
-      if (error.response.status === 404 && query) {
-        setTechnicalMessage(
-          <div>
-            <div className='font-bold'>
-              404 | Sorry, such article was not found
-            </div>
-          </div>
-        )
-        return
-      }
-      throw error
-    }
-    setTechnicalMessage(null);
-  }
-
-  useEffect(() => {
-    const query = router.query;
-    loadArticle(query)
-  }, [router.isReady, router.query])
-
+export default function Article(props) {
+  const {className, article} = props;
 
   return (
     <div className={'container md:shadow-lg max-w-screen-md mx-auto p-4 ' + className}>
-      <div>{technicalMessage}</div>
-      <ArticleView article={article} />
+      <ArticleView style={{minHeight: '600px'}} article={article} />
+      <div className='flex justify-between border-t-2 border-neutral-400 py-1'>
+        <LikeCounter articleId={article._id} />
+        <Controls article={article}></Controls>
+      </div>
     </div>
   )
 }

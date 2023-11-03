@@ -64,13 +64,14 @@ function replaceClasses(classes1, classes2) {
  * @returns React.JSX.Element
  */
 export default function CustomButton(props) {
-  const {children, onClick, disabled, type, className} = props;
+  const {children, onClick, disabled, type, className, ariaLabel} = props;
   return (
     <button 
       className={replaceClasses(buttonClasses, className)}
       onClick={onClick}
       disabled={disabled}
-      type={type}>
+      type={type}
+      aria-label={ariaLabel}>
       {children}
     </button>
   )

@@ -22,37 +22,31 @@ export default function RegisterForm() {
   const [isFormValid, setIsFormValid] = useState(false)
 
   function loginValidation(event) {
-    if(event.target.value) {
-        setIsLoginValid(validateLogin(event.target.value))
-    }
+    const validity = validateLogin(event.target.value)
+    setIsLoginValid(validity);
   }
 
   function emailValidation(event) {
-    if(event.target.value) {
-        setIsEmailValid(validateEmail(event.target.value))
-    }
+    setIsEmailValid(validateEmail(event.target.value))
   }
   function passwordValidation(event) {
-    if(event.target.value) {
-        setIsPasswordValid(validatePassword(event.target.value))
-    }
+    setIsPasswordValid(validatePassword(event.target.value))
   }
 
   function validatePasswordConfirm(event) {
-    if(event.target.value) {
-        setIsPasswordConfirmed(event.target.value == passwordField.current.value)
-    }
+    setIsPasswordConfirmed(event.target.value == passwordField.current.value)
   }
 
   function validateUsername(event) {
-    if(event.target.value) {
-        setIsUsernameValid(validateLogin(event.target.value))
-    }
+    setIsUsernameValid(validateLogin(event.target.value))
   }
 
   useEffect(() => {
     if (isLoginValid && isEmailValid && isPasswordValid && isPasswordConfirmed && isUsernameValid) {
       setIsFormValid(true);
+    }
+    else {
+      setIsFormValid(false)
     }
   }, [isLoginValid, isEmailValid, isPasswordValid, isPasswordConfirmed, isUsernameValid])
 
@@ -63,7 +57,7 @@ export default function RegisterForm() {
         <div className='md:columns-2 mb-2'>
           <CustomInput
             className="mb-2" 
-            onChange={loginValidation} 
+            onInput={loginValidation} 
             id="login" 
             label="Login" 
             validation={isLoginValid} 
@@ -73,7 +67,7 @@ export default function RegisterForm() {
             />
           <CustomInput 
             className="mb-2" 
-            onChange={emailValidation} 
+            onInput={emailValidation} 
             id="email" 
             label="Email" 
             type="email" 
@@ -85,7 +79,7 @@ export default function RegisterForm() {
         <div className='md:columns-2 mb-2'>
             <CustomInput
               className="mb-2" 
-              onChange={passwordValidation}
+              onInput={passwordValidation}
               validation={isPasswordValid} 
               validationMessage={"Incorrect password"} 
               id="password"
@@ -96,7 +90,7 @@ export default function RegisterForm() {
               autoComplete="new-password"
               />
             <CustomInput
-              onChange={validatePasswordConfirm}
+              onInput={validatePasswordConfirm}
               validation={isPasswordConfirmed}
               validationMessage={"Passwords are not same"} 
               name="password-confirm" 
@@ -107,7 +101,7 @@ export default function RegisterForm() {
         </div>
         <CustomInput
           className="mb-2" 
-          onChange={validateUsername}
+          onInput={validateUsername}
           validation={isUsernameValid}
           validationMessage={"Nickname is invalid"} 
           id="nickname" 

@@ -1,9 +1,18 @@
-function clearForm(element) {
-    const form = Object.entries(element.target);
+function clearForm(event) {
+    const form = Object.entries(event.target);
+
     let i = 0;
     form.forEach(item => {
         if (item[1].value) {
-            element.target[item[0]].value = '';
+            const element = event.target[item[0]];
+            element.value = '';
+            if (!(element.nodeName === 'INPUT')) return;
+
+            const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+            nativeInputValueSetter.call(element, '');
+
+            const ev2 = new Event('input', { bubbles: true});
+            element.dispatchEvent(ev2);
         }
     })
 }

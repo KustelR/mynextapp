@@ -1,17 +1,31 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import classNames from 'classnames'
+import reqAuth from '@/scripts/reqAuth'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowUp, faArrowDown} from '@fortawesome/free-solid-svg-icons'
 
 
 async function voteArticle(articleId, voteChange) {
-    await axios.put("/api/v2/articles/vote", {voteChange: voteChange}, {headers: {'x-access-token': localStorage.getItem('accessToken')}, params: {'_id': articleId}})
+    await reqAuth("/api/v2/articles/vote", 
+    {
+      headers: {'x-access-token': localStorage.getItem('accessToken')}, 
+      params: {'_id': articleId}
+    },
+    axios.put,
+    {
+      voteChange: voteChange
+    })
   }
 
 async function getLikes(articleId) {
-  const response = await axios.get("/api/v2/articles", {headers: {'x-access-token': localStorage.getItem('accessToken'), 'x-article-limit': 1}, params: {'_id': articleId}});
+  const response = await reqAuth(
+    "/api/v2/articles", 
+    {
+      headers: {'x-article-limit': 1}, 
+      params: {'_id': articleId}
+    });
   return {likes: response.data.votes, yourVote: response.data.requesterVote}
 }
 

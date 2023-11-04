@@ -16,7 +16,7 @@ export default function ArticlePreview({article}) {
                     <span>{article.postTime ? UnixToUTC(article.postTime) : ''}</span>
                 </div>
             </div>
-            <p className='line-clamp-3'>
+            <p className='line-clamp-3 hover:line-clamp-none'>
                 {article.description}
             </p>
             <div>

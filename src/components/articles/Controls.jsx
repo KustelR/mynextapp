@@ -4,7 +4,7 @@ import TextButton from '@/components/ui/TextButton'
 
 
 async function handleDeletion(article) {
-    await axios.delete("/api/v1/articles", {headers: {'x-access-token': localStorage.getItem('accessToken')}, params: {'_id': article._id}})
+    await axios.delete("/api/v2/articles", {headers: {'x-access-token': localStorage.getItem('accessToken')}, params: {'_id': article._id}})
   }
 
 

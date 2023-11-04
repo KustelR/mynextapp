@@ -81,8 +81,8 @@ export default function Navbar() {
 
 
   return (
-    <nav className='flex h-fit bg-primary text-white text-2xl w-full place-content-between shadow-inner border-bottom border-neutral-200 border-b-2 dark:border-transparent dark:bg-neutral-700 p-1'>
-        <div className='flex h-fit justify-between md:justify-normal'>
+    <nav className='flex h-fit items-end bg-primary text-white text-2xl w-full place-content-between shadow-inner border-bottom border-neutral-200 border-b-2 dark:border-transparent dark:bg-neutral-700 p-1'>
+      <div className='flex h-fit justify-between md:justify-normal'>
         <div className='md:w-0 md:h-0'>
           <button 
               aria-label='toggle mobile navigaton'
@@ -91,8 +91,8 @@ export default function Navbar() {
               <FontAwesomeIcon className='fa-2x' icon={faBars} />
             </button>
         </div>
-        <div className='md:flex items-end'> 
-          <h1 className=' md:ml-3 mr-3 md:hover:rotate-1 md:hover:scale-105 text-4xl'><NextLink className='font-bold' href="/">KUST</NextLink></h1>
+        <div className='md:flex items-end w-fit'> 
+          <h1 className=' md:ml-3 mr-3 md:hover:rotate-1 md:hover:scale-105 text-6xl'><NextLink className='font-bold' href="/">KUST</NextLink></h1>
           <ul className={navbarClasses}>
             <li className={navbarItemClasses + ' block md:hidden'}><CustomInput placeholder="Search..." /></li>
             <li className={navbarItemClasses + ' block md:hidden'}><Link to="/app/profile">Profile</Link></li>
@@ -112,13 +112,13 @@ export default function Navbar() {
             <Link to="/app/profile">Profile</Link>
         </ShowIf>
         <ShowIf isVisible={!isLoggedIn}>
-          <div className='mr-12 hidden lg:block'>
+          <div className='md:mr-6 hidden lg:block'>
             <Link to="/app/login">
               <TextButton className='p-0'>Log in / Register</TextButton>
             </Link>
           </div>
         </ShowIf>
-        <div className='hidden md:block mr-12'><CustomInput className='text-black' placeholder="Search..." /></div>
+        <div className='hidden md:block md:mr-6'><CustomInput className='text-black' placeholder="Search..." /></div>
         <ImageButton onClick={toggleTheme} className="h-9 w-9 relative items-center">
           <Image fill={true} alt='Theme change' src={themeIconSrc} />
         </ImageButton>

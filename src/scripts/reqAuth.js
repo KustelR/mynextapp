@@ -34,8 +34,7 @@ export default async function reqAuth(url, config={}, call=axios.get, payload=un
         const refreshToken = localStorage.getItem('refreshToken');
         const refreshMessage = await axios.get('/auth/v1/accesstoken', 
             {params: {refresh_token: refreshToken}});
-
-        accessToken = refreshMessage.data.accessToken;
+        accessToken = refreshMessage.data;
         localStorage.setItem('accessToken', accessToken);
         if (accessToken) {
             return await authCall(accessToken);

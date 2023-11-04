@@ -9,12 +9,14 @@ import ArticlePreview from '@/components/articles/ArticlePreview';
 import reqAuth from '@/scripts/reqAuth';
 import axios from 'axios';
 import Image from 'next/image';
+import {Link} from 'react-router-dom'
 
 
 export default function Personal() {
 
   const [userdata, setUserdata] = useState({});
   const [articles, setArticles] = useState([]);
+  const [adminAccess, setAdminAccess] = useState(false)
 
   async function loadUser() {
     if (!localStorage.getItem('accessToken')) {
@@ -22,7 +24,6 @@ export default function Personal() {
     }
     try {
       const response = await reqAuth('/api/v1/users/me');
-      console.log(response);
       setUserdata(response.data);
     }
     catch (error) {
@@ -33,8 +34,9 @@ export default function Personal() {
   async function loadArticles() {
     try {
       const response = await axios.get(
-        '/api/v1/articles/previews', 
+        '/api/v2/articles/previews', 
         {params: {authorLogin: userdata.login}});
+        console.log(response.data);
       setArticles(response.data);
     }
     catch (error) {
@@ -47,7 +49,9 @@ export default function Personal() {
   }, [])
 
   useEffect(() => {
-    loadArticles()
+    loadArticles();
+    setAdminAccess(localStorage.getItem('admin') === 'true');
+    console.log(localStorage.getItem('admin'))
   }, [userdata])
 
 
@@ -79,17 +83,24 @@ export default function Personal() {
     <h3 className='text-xl font-semibold'>Your articles:</h3>
     <ul>
         <li>
-        {articles.map((article) => {
+        {articles ? articles.map((article) => {
             return <ArticlePreview key={article._id} article={article}/>
-            })}
+            }) : <span>Write some!</span>}
         </li>
     </ul>
     </div>
-    <h3 className='text-xl font-semibold'>Controls</h3>
-    <TextButton className='mr-2'>Change password</TextButton>
-    <TextButton className='mr-2'>Change email</TextButton>
-    <TextButton className='mr-2'>Change nickname</TextButton>
-    <TextButton className='ml-auto mr-0'>Delete account</TextButton>
+    <div>
+      <h3 className='text-xl font-semibold'>Controls</h3>
+      <div className='flex'>
+      <TextButton className='mr-2'>Change password</TextButton>
+      <TextButton className='mr-2'>Change email</TextButton>
+      <TextButton className='mr-2'>Change nickname</TextButton>
+      <TextButton className='ml-auto mr-2'>Delete account</TextButton>
+      <ShowIf isVisible={adminAccess}>
+        <Link to="/app/admin"><TextButton>ADMIN</TextButton></Link>
+      </ShowIf>
+      </div>
+    </div>
     </div>
   )
 }

@@ -62,7 +62,7 @@ export default function ArticleTable(props) {
   return (
     <table className='table-auto sortable w-full'>
         <Head>
-            <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+            <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js" async></script>
         </Head>
         <thead className='font-bold border-b-2 border-neutral-500'>
             <tr className='bg-neutral-100 dark:bg-neutral-700 items-start'>

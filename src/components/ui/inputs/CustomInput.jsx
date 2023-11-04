@@ -19,12 +19,13 @@ import ShowIf from '@/components/ui/ShowIf';
  * @param {function} props.onChange Function to be called on input change
  * @param {*} props.reference Refs to be set on input element
  * @param {string} props.className Classes (will be applied to root div of the component)
+ * @param {string} props.inputClassName Classes (will be applied to input component)
  * @param {string} props.autoComplete Autocomplete property
  * @returns ```React.JSX.Element```
  */
 export default function CustomInput(props) {
   const {id, label, type, advice, placeholder, validation, validationMessage, 
-   onChange, reference, className, autoComplete, onInput} = props;
+   onChange, reference, className, inputClassName, autoComplete, onInput} = props;
 
   const [isFocused, setIsFocused] = useState(false);
 
@@ -64,7 +65,7 @@ export default function CustomInput(props) {
     <ShowIf className="text-xs font-bold text-red-600 h-fit p-0.5" isVisible={validation === false}>{validationMessage}</ShowIf>
     </div>
         <input 
-          className={inputClasses}
+          className={inputClasses + ' ' + inputClassName}
           onInput={onInput} 
           id={id} 
           type={type ? type : "text"} 

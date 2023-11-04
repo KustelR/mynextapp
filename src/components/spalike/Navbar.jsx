@@ -82,7 +82,7 @@ export default function Navbar() {
 
   return (
     <nav className='flex h-fit bg-primary text-white text-2xl w-full place-content-between shadow-inner border-bottom border-neutral-200 border-b-2 dark:border-transparent dark:bg-neutral-700 p-1'>
-        <div className='flex h-fit justify-between md:justify-normal items-end'>
+        <div className='flex h-fit justify-between md:justify-normal'>
         <div className='md:w-0 md:h-0'>
           <button 
               aria-label='toggle mobile navigaton'
@@ -91,17 +91,19 @@ export default function Navbar() {
               <FontAwesomeIcon className='fa-2x' icon={faBars} />
             </button>
         </div>
+        <div className='md:flex items-end'> 
           <h1 className=' md:ml-3 mr-3 md:hover:rotate-1 md:hover:scale-105 text-4xl'><NextLink className='font-bold' href="/">KUST</NextLink></h1>
           <ul className={navbarClasses}>
-          <li className={navbarItemClasses + ' block md:hidden'}><CustomInput placeholder="Search..." /></li>
-          <li className={navbarItemClasses + ' block md:hidden'}><Link to="/app/profile">Profile</Link></li>
+            <li className={navbarItemClasses + ' block md:hidden'}><CustomInput placeholder="Search..." /></li>
+            <li className={navbarItemClasses + ' block md:hidden'}><Link to="/app/profile">Profile</Link></li>
             <li className={navbarItemClasses}><Link to="/app/browse">Read</Link></li>
             <li className={navbarItemClasses}><Link to="/app/article/write">Write</Link></li>
             <li className={navbarItemClasses}><Link to="/about">About</Link></li>
             <li className={navbarItemClasses}>Contact</li>
             <li className={navbarItemClasses + ' block md:hidden'}><Link to="app/login">Log in / Sign up</Link></li>
             <li className={navbarItemClasses + ' block md:hidden'} onClick={() => {localStorage.clear(); window.location.reload()}}>Log out</li>
-        </ul>
+          </ul>
+        </div>
       </div>
       <div className='flex md:items-end'>
         <ShowIf

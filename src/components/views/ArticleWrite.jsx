@@ -20,7 +20,7 @@ export default function ArticleWrite({className}) {
               label="Title" 
               id="title" 
               placeholder="Your title..."
-              className="mb-4" />
+              className="mb-4 text-2xl" />
               <RichTextEditor 
                 className="mb-4 min-h-500px" 
                 label="Article body" 

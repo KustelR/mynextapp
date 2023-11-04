@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react'
-import classNames from 'classnames'
 import Head from 'next/head'
 import Link from 'next/link'
-import fetchFromApi from '@/scripts/fetchFromApi'
 import '../../app/globals.css';
+import {get} from 'axios'
 
 import ArticleContainer from '@/components/views/ArticleContainer';
 
@@ -46,8 +45,13 @@ export default function ReadArticle({article}) {
 
 
 export async function getServerSideProps(context) {
-  const article = (await fetchFromApi("http://localhost:5000/api/v2/articles", 
-                                      {_id: context.params.id}, {'x-article-limit': 1})).data;
+  const response = await get("http://localhost:5000/api/v2/articles", 
+    {
+      params: {_id: context.params.id}, 
+      headers: {'x-article-limit': 1}
+    }
+  );
+  const article = response.data;
 
   return {
     props: {

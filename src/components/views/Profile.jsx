@@ -3,57 +3,27 @@
 
 import React, {useState, useEffect} from 'react';
 import ErrorBox from '@/components/ui/popups/ErrorBox';
-import fetchFromApi from '@/scripts/fetchFromApi';
 import ShowIf from '@/components/ui/ShowIf';
 import TextButton from '@/components/ui/TextButton';
 import ArticlePreview from '@/components/articles/ArticlePreview';
+import reqAuth from '@/scripts/reqAuth';
 import axios from 'axios';
 import Image from 'next/image';
 
 
-async function fetchUser(accessToken) {
-    return await axios.get('/api/v1/users/me', {headers: {"x-access-token": accessToken}})
-}
-
-
-async function handleFetchUser() {
-  let accessToken = localStorage.getItem('accessToken');
-  let response;
-  try {
-    response = await fetchUser(accessToken);
-    return response;
-  }
-  catch (err) {
-    response = err.response;
-    if (response.data) {
-      const refreshToken = localStorage.getItem('refreshToken');
-      let refreshMessage;
-      if (response.data.message === 'jwt expired') {
-        refreshMessage = await fetchFromApi('/auth/v1/accesstoken', {refresh_token: refreshToken});
-      }
-      
-      if (refreshMessage && refreshMessage.data) {
-        accessToken = refreshMessage.data.accessToken;
-        localStorage.setItem('accessToken', accessToken);
-        return await fetchUser(accessToken);
-      }
-    }
-  }
-  
-}
-
-
 export default function Personal() {
 
-  const [userdata, setUserdata] = useState({})
+  const [userdata, setUserdata] = useState({});
   const [articles, setArticles] = useState([]);
 
-  function loadUser() {
+  async function loadUser() {
     if (!localStorage.getItem('accessToken')) {
       return 1;
     }
     try {
-      handleFetchUser().then(response => {setUserdata(response? response.data : {errorMessage: "user is not loaded"})})
+      const response = await reqAuth('/api/v1/users/me');
+      console.log(response);
+      setUserdata(response.data);
     }
     catch (error) {
       alert(error);
@@ -62,7 +32,10 @@ export default function Personal() {
 
   async function loadArticles() {
     try {
-      setArticles((await fetchFromApi('/api/v1/articles/previews', {authorLogin: userdata.login})).data);
+      const response = await axios.get(
+        '/api/v1/articles/previews', 
+        {params: {authorLogin: userdata.login}});
+      setArticles(response.data);
     }
     catch (error) {
       console.error(error)

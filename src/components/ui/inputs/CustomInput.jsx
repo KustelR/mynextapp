@@ -1,11 +1,9 @@
-'use client'
+"use client";
 
-
-import React, {useState} from 'react'
-import classNames from 'classnames'
-import styles from '@/styles/CustomInput.module.css';
-import ShowIf from '@/components/ui/ShowIf';
-
+import React, { useState } from "react";
+import classNames from "classnames";
+import styles from "@/styles/CustomInput.module.css";
+import ShowIf from "@/components/ui/ShowIf";
 
 /**
  * Customizable input element
@@ -24,8 +22,21 @@ import ShowIf from '@/components/ui/ShowIf';
  * @returns ```React.JSX.Element```
  */
 export default function CustomInput(props) {
-  const {id, label, type, advice, placeholder, validation, validationMessage, 
-   onChange, reference, className, inputClassName, autoComplete, onInput} = props;
+  const {
+    id,
+    label,
+    type,
+    advice,
+    placeholder,
+    validation,
+    validationMessage,
+    onChange,
+    reference,
+    className,
+    inputClassName,
+    autoComplete,
+    onInput,
+  } = props;
 
   const [isFocused, setIsFocused] = useState(false);
 
@@ -34,50 +45,59 @@ export default function CustomInput(props) {
   }
 
   const inputClasses = classNames(
-    'block',
-    'w-full',
-    'p-1',
-    'pb-0',
-    'bg-gray-100',
-    'dark:bg-neutral-700',
-    'outline-0',
+    "block",
+    "w-full",
+    "p-1",
+    "pb-0",
+    "bg-gray-100",
+    "dark:bg-neutral-700",
+    "outline-0",
     {
-      'outline-1': validation === false,
-      'outline-red-500': validation === false,
-    },
-  )
+      "outline-1": validation === false,
+      "outline-red-500": validation === false,
+    }
+  );
 
   const underDiv = classNames(
-    'h-0.5',
-    'transition-all',
-    'transition-1000',
-    'ease-out',
+    "h-0.5",
+    "transition-all",
+    "transition-1000",
+    "ease-out",
     styles.animated,
     {
-      [styles.animatedActive]: isFocused
+      [styles.animatedActive]: isFocused,
     }
-  )
+  );
 
   return (
     <div className={className}>
-    <div className='flex items-end'>
-    <label className='block mr-2' htmlFor={id}>{label}</label> 
-    <ShowIf className="text-xs font-bold text-red-600 h-fit p-0.5" isVisible={validation === false}>{validationMessage}</ShowIf>
+      <div className="flex items-end">
+        <label className="block mr-2" htmlFor={id}>
+          {label}
+        </label>
+        <ShowIf
+          className="text-xs font-bold text-red-600 h-fit p-0.5"
+          isVisible={validation === false}
+        >
+          {validationMessage}
+        </ShowIf>
+      </div>
+      <input
+        className={inputClasses + " " + inputClassName}
+        onInput={onInput}
+        id={id}
+        type={type ? type : "text"}
+        placeholder={placeholder}
+        onChange={onChange}
+        ref={reference}
+        autoComplete={autoComplete}
+        onFocus={toggleFocus}
+        onBlur={toggleFocus}
+      />
+      <div className={underDiv}></div>
+      <p className="pl-8 w-fit text-xs text-neutral-500 dark:text-neutral-400">
+        {advice}
+      </p>
     </div>
-        <input 
-          className={inputClasses + ' ' + inputClassName}
-          onInput={onInput} 
-          id={id} 
-          type={type ? type : "text"} 
-          placeholder={placeholder} 
-          onChange={onChange}
-          ref={reference}
-          autoComplete={autoComplete}
-          onFocus={toggleFocus}
-          onBlur={toggleFocus}
-          />
-          <div className={underDiv}></div>
-        <p className='pl-8 w-fit text-xs text-neutral-500 dark:text-neutral-400'>{advice}</p>
-    </div>
-  )
+  );
 }

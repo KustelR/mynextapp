@@ -2,6 +2,9 @@ import React from "react";
 import axios from "axios";
 import TextButton from "@/components/ui/TextButton";
 
+import Link from "next/link";
+
+
 async function handleDeletion(article) {
   await axios.delete("/api/v2/articles", {
     headers: { "x-access-token": localStorage.getItem("accessToken") },
@@ -21,9 +24,11 @@ export default function ArticleControls({ article }) {
       >
         Delete
       </TextButton>
-      <TextButton className="p-0 px-1" ariaLabel="Change article">
-        Change
-      </TextButton>
+      <Link href={"/app/article/write?id=" + article._id}>
+        <TextButton className="p-0 px-1" ariaLabel="Change article">
+          Change
+        </TextButton>       
+      </Link>
     </span>
   );
 }

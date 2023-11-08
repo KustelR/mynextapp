@@ -121,7 +121,7 @@ function onError(error) {
   console.error(error);
 }
 
-export default function RichTextEditor({ onChange, className, label }) {
+export default function RichTextEditor({ onChange, className, reference, label }) {
   const initialConfig = {
     namespace: "MyEditor",
     theme,

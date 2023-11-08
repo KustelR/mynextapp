@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import styles from "@/styles/CustomInput.module.css";
 
-export default function CustomTextArea({ id, placeholder, className, label }) {
+export default function CustomTextArea({ id, placeholder, className, label, reference }) {
   const [isFocused, setIsFocused] = useState(false);
 
   function toggleFocus() {
@@ -34,6 +34,7 @@ export default function CustomTextArea({ id, placeholder, className, label }) {
         onChange={resizeTextArea}
         onFocus={toggleFocus}
         onBlur={toggleFocus}
+        ref={reference}
         id={id}
         placeholder={placeholder}
         cols="30"

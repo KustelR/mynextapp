@@ -17,7 +17,7 @@ export default function DetailedData(props) {
             length = length + 1;
             if (!value.type) {
             return (
-                <li className='max-w-30ch overflow-hidden text-overflow-ellips whitespace-nowrap' key={length}>
+                <li className='max-w-full overflow-hidden text-overflow-ellips whitespace-nowrap' key={length}>
                     <strong className='font-semibold'>{title + ': '}</strong>{value}
                 </li>)
             }

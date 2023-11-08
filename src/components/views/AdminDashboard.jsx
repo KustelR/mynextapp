@@ -13,7 +13,7 @@ export default function AdminDashboard(props) {
   const [selectedItem, setSelectedItem] = useState({});
 
   return (
-    <div className="md:flex p-5 h-full">
+    <div className="md:flex p-5 h-full justify-between">
       <div className="dark:border-b dark:border-x dark:text-neutral-200 border-t-4 dark:border-neutral-700 border-t-secondary-light bg-white max-h-[460px] overflow-scroll md:overflow-x-hidden dark:bg-neutral-800 md:w-9/12 p-1 md:mr-5 mb-5 md:mb-0">
         <ul className="flex mb-1">
           {options.map((option) => {
@@ -45,10 +45,13 @@ export default function AdminDashboard(props) {
           </Suspense>
         </ShowIf>
       </div>
-      <DetailedData
-        className="dark:border-b dark:border-x border-t-4 dark:border-neutral-700 border-t-secondary-light bg-white dark:bg-neutral-800"
-        toDisplay={selectedItem}
-      />
+      <div className="md:w-3/12">
+        <DetailedData
+          className="dark:border-b dark:border-x border-t-4 dark:border-neutral-700 border-t-secondary-light bg-white dark:bg-neutral-800"
+          toDisplay={selectedItem}
+        />
+      </div>
+
     </div>
   );
 }

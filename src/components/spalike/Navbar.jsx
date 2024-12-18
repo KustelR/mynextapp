@@ -3,19 +3,16 @@ import NextLink from "next/link";
 import { Link } from "react-router-dom";
 import Image from "next/image";
 
-import ImageButton from "../ui/ImageButton";
-import TextButton from "../ui/TextButton";
-import CustomInput from "../ui/inputs/CustomInput";
+import {ImageButton, TextButton, CustomInput, ShowIf} from "@/components/ui";
 const classNames = require("classnames");
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import ShowIf from "../ui/ShowIf";
 
 export default function Navbar() {
   const [visbility, setVisibility] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [themeIconSrc, setThemeIconSrc] = useState(
-    "/../../assets/theme/icons8-moon-50.png"
+    "/assets/theme/icons8-moon-50.png"
   );
 
   function toggleVisibility() {
@@ -51,10 +48,10 @@ export default function Navbar() {
       : (isDarkTheme = false);
     if (isDarkTheme) {
       document.body.classList.add("dark");
-      setThemeIconSrc("/../../assets/theme/icons8-sun-50.png");
+      setThemeIconSrc("/assets/theme/icons8-sun-50.png");
     } else {
       document.body.classList.remove("dark");
-      setThemeIconSrc("/../../assets/theme/icons8-moon-50.png");
+      setThemeIconSrc("/assets/theme/icons8-moon-50.png");
     }
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) setIsLoggedIn(true);
@@ -68,11 +65,11 @@ export default function Navbar() {
     if (isDarkTheme) {
       document.body.classList.remove("dark");
       localStorage.setItem("theme", "light");
-      setThemeIconSrc("/../../assets/theme/icons8-moon-50.png");
+      setThemeIconSrc("/assets/theme/icons8-moon-50.png");
     } else {
       document.body.classList.add("dark");
       localStorage.setItem("theme", "dark");
-      setThemeIconSrc("/../../assets/theme/icons8-sun-50.png");
+      setThemeIconSrc("/assets/theme/icons8-sun-50.png");
     }
   }
 

@@ -24,7 +24,10 @@
     "strictNullChecks": true,
     "paths": {
       "@/*": [
-        "./src/*"
+        "./src/*",
+      ],
+      "@public/*": [
+        "./public/*"
       ]
     },
     "target": "ES2017"

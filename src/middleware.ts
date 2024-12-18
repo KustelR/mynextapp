@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import * as fs from "fs/promises";
+import path from "path";
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
@@ -11,13 +13,27 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(
       new URL(process.env.API_HOST + pathname + searchParams, request.url)
     );
-  } else {
+  } else if (apiVersion.includes("v1")) {
     return NextResponse.redirect(
       new URL(
         process.env.API_HOST_LEGACY + pathname + searchParams,
         request.url
       )
     );
+  }
+  if(request.nextUrl.pathname.includes("/assets/")) {
+    let target;
+    try {
+      target = fs.readFile(path.join("../public", request.nextUrl.pathname))
+      console.log(target);
+      return new NextResponse(target, {
+        headers: {
+          "Content-Type": "image/png",
+        },
+      });
+    } catch (err) {
+      return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
   }
 }
 
@@ -28,5 +44,6 @@ export const config = {
     "/auth/v1/:path*",
     "/api/v2/:path*",
     "/auth/v2/:path*",
+    "/resource/:path*",
   ],
 };

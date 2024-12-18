@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {TextButton} from "@/components/ui";
+import { TextButton } from "@/components/ui";
 import NextLink from "next/link";
 import reqAuth from "@/scripts/reqAuth";
 import UnixToUTC from "@/scripts/UnixToUTC";
@@ -21,7 +21,7 @@ function ArticleControls(props) {
             const response = await reqAuth(
               "/api/v2/articles",
               { params: { _id: _id } },
-              axios.delete
+              axios.delete,
             );
             addMessage(response.status);
             onAction();

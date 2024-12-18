@@ -1,8 +1,8 @@
 import React from "react";
 import ArticleView from "@/components/articles/ArticleView";
 
-const LikeCounter = React.lazy(() =>
-  import("@/components/articles/LikeCounter")
+const LikeCounter = React.lazy(
+  () => import("@/components/articles/LikeCounter"),
 );
 const Controls = React.lazy(() => import("@/components/articles/Controls"));
 

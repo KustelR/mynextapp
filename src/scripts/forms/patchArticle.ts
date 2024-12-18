@@ -12,29 +12,26 @@ import axios, { AxiosResponse } from "axios";
  * @returns
  */
 export default async function patchData(
-    url: string,
-    element: any,
-    callback: Function | null,
-    additionalData: object,
-    headers: object
+  url: string,
+  element: any,
+  callback: Function | null,
+  additionalData: object,
+  headers: object,
 ) {
-    let data = createDataObject(element);
+  let data = createDataObject(element);
 
-    let response: AxiosResponse<any, any>;
-    try {
-        response = await axios.patch(url, Object.assign(data, additionalData), {
-            headers: Object.assign(
-                { "Content-Type": "application/json" },
-                headers
-            ),
-        });
-    } catch (err) {
-        if (callback) {
-            callback(null, err);
-        }
-        return;
-    }
+  let response: AxiosResponse<any, any>;
+  try {
+    response = await axios.patch(url, Object.assign(data, additionalData), {
+      headers: Object.assign({ "Content-Type": "application/json" }, headers),
+    });
+  } catch (err) {
     if (callback) {
-        callback(response, null);
+      callback(null, err);
     }
+    return;
+  }
+  if (callback) {
+    callback(response, null);
+  }
 }

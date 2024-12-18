@@ -1,5 +1,6 @@
 .pageContainer {
-    background: url('../../public/assets/pexels-stephan-seeber-1054218.jpg') no-repeat center;
-    background-size: cover;
-    z-index: -100;
+  background: url("../../public/assets/pexels-stephan-seeber-1054218.jpg")
+    no-repeat center;
+  background-size: cover;
+  z-index: -100;
 }

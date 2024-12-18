@@ -11,20 +11,20 @@ export function middleware(request: NextRequest) {
   const apiVersion = request.nextUrl.pathname.slice(5, 8);
   if (apiVersion.includes("v2")) {
     return NextResponse.redirect(
-      new URL(process.env.API_HOST + pathname + searchParams, request.url)
+      new URL(process.env.API_HOST + pathname + searchParams, request.url),
     );
   } else if (apiVersion.includes("v1")) {
     return NextResponse.redirect(
       new URL(
         process.env.API_HOST_LEGACY + pathname + searchParams,
-        request.url
-      )
+        request.url,
+      ),
     );
   }
-  if(request.nextUrl.pathname.includes("/assets/")) {
+  if (request.nextUrl.pathname.includes("/assets/")) {
     let target;
     try {
-      target = fs.readFile(path.join("../public", request.nextUrl.pathname))
+      target = fs.readFile(path.join("../public", request.nextUrl.pathname));
       console.log(target);
       return new NextResponse(target, {
         headers: {
@@ -32,7 +32,10 @@ export function middleware(request: NextRequest) {
         },
       });
     } catch (err) {
-      return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+      return NextResponse.json(
+        { error: "Internal Server Error" },
+        { status: 500 },
+      );
     }
   }
 }

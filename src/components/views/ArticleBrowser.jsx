@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {CustomInput, TextButton} from "@/components/ui";
+import { CustomInput, TextButton } from "@/components/ui";
 import ArticlePreview from "@/components/articles/ArticlePreview";
 
 function LoadingPlaceholder() {
@@ -18,7 +18,7 @@ export default function Home() {
   async function loadArticlePreviews(query) {
     try {
       setArticles(
-        (await axios.get("/api/v1/articles/previews", { params: query })).data
+        (await axios.get("/api/v1/articles/previews", { params: query })).data,
       );
     } catch (error) {
       console.error(error);

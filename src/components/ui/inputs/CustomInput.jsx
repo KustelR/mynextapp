@@ -55,7 +55,7 @@ export default function CustomInput(props) {
     {
       "outline-1": validation === false,
       "outline-red-500": validation === false,
-    }
+    },
   );
 
   const underDiv = classNames(
@@ -66,7 +66,7 @@ export default function CustomInput(props) {
     styles.animated,
     {
       [styles.animatedActive]: isFocused,
-    }
+    },
   );
 
   return (

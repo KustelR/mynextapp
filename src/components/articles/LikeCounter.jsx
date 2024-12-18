@@ -16,7 +16,7 @@ async function voteArticle(articleId, voteChange) {
     axios.put,
     {
       voteChange: voteChange,
-    }
+    },
   );
 }
 
@@ -76,11 +76,11 @@ export default function LikeCounter(props) {
 
   const upvoteClassNames = classNames(
     "px-2 mr-4 text-green-400 dark:text-green-600 rounded-xl border-2",
-    { "border-green-300 dark:border-green-700": isLiked === true }
+    { "border-green-300 dark:border-green-700": isLiked === true },
   );
   const downvoteClassNames = classNames(
     "px-2 text-red-400 dark:text-red-600 rounded-xl border-2",
-    { "border-red-300 dark:border-red-700": isLiked === false }
+    { "border-red-300 dark:border-red-700": isLiked === false },
   );
 
   return (

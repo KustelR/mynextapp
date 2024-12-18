@@ -3,7 +3,7 @@ import NextLink from "next/link";
 import { Link } from "react-router-dom";
 import Image from "next/image";
 
-import {ImageButton, TextButton, CustomInput, ShowIf} from "@/components/ui";
+import { ImageButton, TextButton, CustomInput, ShowIf } from "@/components/ui";
 const classNames = require("classnames");
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,7 @@ export default function Navbar() {
   const [visbility, setVisibility] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [themeIconSrc, setThemeIconSrc] = useState(
-    "/assets/theme/icons8-moon-50.png"
+    "/assets/theme/icons8-moon-50.png",
   );
 
   function toggleVisibility() {
@@ -26,7 +26,7 @@ export default function Navbar() {
       visible: visbility,
       hidden: !visbility,
     },
-    "md:visible"
+    "md:visible",
   );
 
   const navbarItemClasses = classNames(
@@ -38,7 +38,7 @@ export default function Navbar() {
     "dark:hover:bg-neutral-600",
     "my-5",
     "px-1",
-    "md:rounded-md"
+    "md:rounded-md",
   );
 
   useEffect(() => {

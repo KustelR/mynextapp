@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from "react";
-import {ShowIf} from "@/components/ui";
+import { ShowIf } from "@/components/ui";
 
 import DetailedData from "@/components/DetailedData";
 const UserTable = React.lazy(() => import("@/components/UserTable"));
@@ -51,7 +51,6 @@ export default function AdminDashboard(props) {
           toDisplay={selectedItem}
         />
       </div>
-
     </div>
   );
 }

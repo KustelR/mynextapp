@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import {TextButton as CustomButton, ShowIf} from "@/components/ui";
+import { TextButton as CustomButton, ShowIf } from "@/components/ui";
 import RegisterForm from "@/components/RegisterForm";
 import LoginForm from "@/components/LoginForm";
 

@@ -10,15 +10,15 @@ import "@/app/globals.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const ArticleWrite = React.lazy(
-  () => import("@/components/views/ArticleWrite")
+  () => import("@/components/views/ArticleWrite"),
 );
 const Profile = React.lazy(() => import("@/components/views/Profile"));
 const Login = React.lazy(() => import("@/components/views/Login"));
 const ArticleBrowser = React.lazy(
-  () => import("@/components/views/ArticleBrowser")
+  () => import("@/components/views/ArticleBrowser"),
 );
 const AdminDashboard = React.lazy(
-  () => import("@/components/views/AdminDashboard")
+  () => import("@/components/views/AdminDashboard"),
 );
 
 function LoadingPlaceholder() {
@@ -27,7 +27,7 @@ function LoadingPlaceholder() {
 
 export default function App() {
   const [messages, setMessages] = useState(
-    Array<{ id: Number; content: String }>
+    Array<{ id: Number; content: String }>,
   );
   const [messageCount, setMessageCount] = useState(Number);
 
@@ -39,7 +39,7 @@ export default function App() {
     setMessages(
       messages.filter((message) => {
         return message.id != id;
-      })
+      }),
     );
   }
 

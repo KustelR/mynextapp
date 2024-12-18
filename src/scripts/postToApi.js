@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 /**
  * Sends data to specified url
  * @param {String} url Target url
@@ -9,5 +8,5 @@ import axios from "axios";
  * @returns {Promise<AxoisResponse>} response from server
  */
 export default function post(url, payload, headers) {
-    return axios.post(url, payload, {headers: headers})
+  return axios.post(url, payload, { headers: headers });
 }

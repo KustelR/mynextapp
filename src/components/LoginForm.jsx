@@ -1,5 +1,5 @@
 import React from "react";
-import {CustomInput, TextButton } from "@/components/ui";
+import { CustomInput, TextButton } from "@/components/ui";
 import SendableForm from "@/components/SendableForm";
 import { sendFormData } from "@/scripts/forms/sendAuthForm";
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import "../../app/globals.css";
+import "@/app/globals.css";
 import { get } from "axios";
 
 import ArticleContainer from "@/components/views/ArticleContainer";

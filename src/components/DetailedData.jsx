@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import TextButton from '@/components/ui/TextButton';
+import {TextButton} from '@/components/ui';
 
 export default function DetailedData(props) {
     let {toDisplay} = props;

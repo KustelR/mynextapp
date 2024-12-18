@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import "./globals.css";
-import styles from "../styles/page.module.css";
+import styles from "@/styles/page.module.css";
 const classNames = require("classnames");
 
 const pageClassnames = classNames([

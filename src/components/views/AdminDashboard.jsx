@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from "react";
-import ShowIf from "../ui/ShowIf";
+import {ShowIf} from "@/components/ui";
 
 import DetailedData from "@/components/DetailedData";
 const UserTable = React.lazy(() => import("@/components/UserTable"));

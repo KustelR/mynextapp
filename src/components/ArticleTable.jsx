@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import TextButton from "@/components/ui/TextButton";
+import {TextButton} from "@/components/ui";
 import NextLink from "next/link";
 import reqAuth from "@/scripts/reqAuth";
 import UnixToUTC from "@/scripts/UnixToUTC";

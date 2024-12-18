@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
-import CustomButton from "@/components/ui/TextButton";
-import LoginForm from "@/components/LoginForm";
+import {TextButton as CustomButton, ShowIf} from "@/components/ui";
 import RegisterForm from "@/components/RegisterForm";
-import ShowIf from "@/components/ui/ShowIf";
+import LoginForm from "@/components/LoginForm";
 
 export default function Login() {
   const [isNewUser, setIsNewUser] = useState(false);

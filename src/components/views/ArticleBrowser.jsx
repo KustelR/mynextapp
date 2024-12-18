@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import CustomInput from "@/components/ui/inputs/CustomInput";
+import {CustomInput, TextButton} from "@/components/ui";
 import ArticlePreview from "@/components/articles/ArticlePreview";
-import TextButton from "@/components/ui/TextButton";
 
 function LoadingPlaceholder() {
   return <div className="items-center justify-center">Loading</div>;

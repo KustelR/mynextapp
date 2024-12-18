@@ -2,7 +2,7 @@
 
 import classNames from 'classnames';
 import React from 'react'
-import styles from '../../styles/CustomInput.module.css';
+import styles from '@/styles/CustomInput.module.css';
 
 export default function AnimatedUnderline({isActive}) {
 

@@ -5,7 +5,7 @@ import Navbar from "@/components/spalike/Navbar";
 import FooterComponent from "@/components/spalike/FooterComponent";
 import PopUpMessage from "@/components/ui/popups/PopUpMessage";
 
-import "../app/globals.css";
+import "@/app/globals.css";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 

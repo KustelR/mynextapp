@@ -2,13 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
 
-import SendableForm from "../SendableForm";
-import CustomInput from "../ui/inputs/CustomInput";
-import CustomTextArea from "@/components/ui/inputs/CustomTextArea";
-import TextButton from "../ui/TextButton";
+import SendableForm from "@/components/SendableForm";
+import {TextButton, CustomInput, CustomTextArea, RichTextEditor} from "@/components/ui";
 import { sendFormData } from "@/scripts/forms/sendArticle";
 import patchData from "@/scripts/forms/patchArticle";
-import RichTextEditor from "@/components/ui/inputs/RichTextEditor";
 
 export default function ArticleWrite({ className }) {
     const [articleBody, setArticleBody] = useState();

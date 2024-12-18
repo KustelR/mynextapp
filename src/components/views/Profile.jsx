@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import ErrorBox from "@/components/ui/popups/ErrorBox";
-import ShowIf from "@/components/ui/ShowIf";
-import TextButton from "@/components/ui/TextButton";
+import {ErrorBox, ShowIf, TextButton} from "@/components/ui";
 import ArticlePreview from "@/components/articles/ArticlePreview";
 import reqAuth from "@/scripts/reqAuth";
 import axios from "axios";

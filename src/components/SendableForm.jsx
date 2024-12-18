@@ -2,10 +2,7 @@
 
 import React, { useState } from "react";
 
-import ShowIf from "./ui/ShowIf";
-import SuccessBox from "./ui/popups/SuccessBox";
-import ErrorBox from "./ui/popups/ErrorBox";
-import PendingBox from "./ui/popups/PendingBox";
+import {ShowIf, SuccessBox, ErrorBox, PendingBox} from "@/components/ui";
 
 /**
  * Container for forms that (kinda) automatically finds
